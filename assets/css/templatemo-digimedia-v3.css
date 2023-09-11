@@ -1395,6 +1395,7 @@ Services Style
   display: block;
   text-align: center;
   margin: 0 auto;
+
 }
 
 .services .naccs .menu div h4 {
@@ -2300,6 +2301,7 @@ responsive
 
   .services .naccs .menu div {
     font-size: 0px;
+    width: auto;
   }
 
   .services ul.nacc li .right-image img {
