@@ -1024,7 +1024,7 @@ Banner Style
   text-transform: capitalize;
   font-size: 20px;
   font-weight: 700;
-  color: #013334;
+  color: #63CD97;
   margin-bottom: 15px;
   text-transform: uppercase;
 }
@@ -1042,6 +1042,27 @@ Banner Style
   margin-bottom: 30px;
   color: black;
 }
+
+.main-banner .left-content .border-first-button a {
+  background-color: #63CD97;
+  color: #fff !important;
+}
+
+/* .border-first-button a {
+  display: inline-block !important;
+  padding: 10px 20px !important;
+  color: #63CD97 !important;
+  border: 1px solid #63CD97 !important;
+  border-radius: 23px;
+  font-weight: 500 !important;
+  letter-spacing: 0.3px !important;
+  transition: all .5s;
+}
+
+.border-first-button a:hover {
+  background-color: #63CD97;
+  color: #fff !important;
+} */
 
 /* .main-banner .right-image {
   text-align: right;
@@ -2161,6 +2182,10 @@ responsive
   .header-area .main-nav .nav li:last-child {
     padding-left: 20px;
   }
+
+  .main-banner .left-content h2 {
+    font-size: 35px;
+  }
 }
 
 @media (max-width: 992px) {
@@ -2375,7 +2400,7 @@ responsive
   }
 
   .main-banner .left-content h2 {
-    font-size: 40px;
+    font-size: 28px;
   }
 
   .blog-post .down-content .border-first-button {
