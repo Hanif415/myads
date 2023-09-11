@@ -2109,6 +2109,12 @@ footer .foot-text {
   margin-bottom: 30px;
 }
 
+footer .foot-item p {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+footer p,
 footer p a {
   color: #fff;
   transition: all .5s;
