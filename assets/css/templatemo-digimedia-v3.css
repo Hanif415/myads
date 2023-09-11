@@ -2385,3 +2385,19 @@ responsive
     margin-top: 20px;
   }
 }
+
+@media (max-width: 449px) {
+
+  .blog .blog-posts .post-item span,
+  .blog .blog-posts .post-item a {
+    font-size: 10px;
+  }
+
+  .blog .blog-posts .post-item h4 {
+    font-size: 12px;
+  }
+
+  .blog .blog-posts .post-item .date {
+    visibility: hidden;
+  }
+}
