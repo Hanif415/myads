@@ -2368,7 +2368,7 @@ responsive
   }
 }
 
-@media (max-width: 512px) {
+@media (max-width: 573px) {
 
   .main-banner .left-content h6 {
     margin-top: -50px;
@@ -2376,5 +2376,12 @@ responsive
 
   .main-banner .left-content h2 {
     font-size: 40px;
+  }
+
+  .blog-post .down-content .border-first-button {
+    float: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
   }
 }
