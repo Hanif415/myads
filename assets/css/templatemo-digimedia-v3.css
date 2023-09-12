@@ -1392,7 +1392,7 @@ Services Style
   top: 0px;
   width: 786px;
   height: 1217px;
-  z-index: 0;
+  z-index: -1;
 }
 
 .services:before {
@@ -1404,7 +1404,7 @@ Services Style
   top: 400px;
   width: 161px;
   height: 413px;
-  z-index: 0;
+  z-index: -1;
 }
 
 .services .section-heading {
@@ -2407,7 +2407,8 @@ responsive
 @media (max-width: 573px) {
 
   .main-banner .left-content h6 {
-    margin-top: -50px;
+    margin-top: -20px;
+    font-size: 14px;
   }
 
   .main-banner .left-content h2 {
@@ -2418,7 +2419,7 @@ responsive
     float: none;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 30px;
   }
 }
 
