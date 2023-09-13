@@ -3,13 +3,13 @@
 session_start();
 
 // Include config file
-require_once "backend/config.php";
+require_once "../backend/config.php";
 // get category file
-require_once 'backend/getCategoryName.php';
+require_once '../backend/getCategoryName.php';
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: layouts/login.php");
+    header("location: login.php");
     exit;
 }
 ?>
@@ -85,7 +85,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     </style>
 
     <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="../css/dashboard.css" rel="stylesheet">
 </head>
 
 <body>
@@ -109,13 +109,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <div class="position-sticky pt-3 sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">
+                            <a class="nav-link" aria-current="page" href="/myads/admin/">
                                 <span data-feather="home" class="align-text-bottom"></span>
                                 Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/myads/admin/layouts/blog.php">
+                            <a class="nav-link active" aria-current="page" href="/myads/admin/layouts/blog.php">
                                 <span data-feather="layout" class="align-text-bottom"></span>
                                 Blogs
                             </a>
@@ -127,17 +127,62 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             </a>
                         </li>
                     </ul>
+
                 </div>
             </nav>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Welcome</h1>
+                    <h1 class="h2">My Blogs</h1>
+                </div>
+                <a href="/myads/admin/index.php/create" class="btn btn-primary mb-3">Create a new blog</a>
+                <div class="table-responsive col-lg-8">
+                    <table class="table table-striped" style="font-size: larger;">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php  // SQL QUERY
+
+                            $query = "SELECT * FROM `blogs` ORDER BY published_at DESC;";
+                            // FETCHING DATA FROM DATABASE
+                            $result = mysqli_query($link, $query);
+
+                            if (mysqli_num_rows($result) > 0) {
+                                // OUTPUT DATA OF EACH ROW
+                                $i = 1;
+                                while ($row = mysqli_fetch_assoc($result)) {
+                            ?>
+                                    <tr>
+                                        <td><?php echo $i; ?></td>
+                                        <td><?php echo $row["title"] ?></td>
+                                        <td><?php echo categoryName($row["category_id"]) ?></td>
+                                        <td>
+                                            <a href="/myads/admin/index.php/show.php<?php echo $row["id"] ?>" class="btn badge bg-primary"><i class="bi bi-eye"></i></a>
+                                            <a href="/myads/admin/index.php/edit<?php echo $row["id"] ?>" class="btn badge bg-warning"><i class="bi bi-pencil-square"></i></a>
+                                            <a href="/myads/admin/index.php/delete<?php echo $row["id"] ?>" class="btn badge bg-danger"><i class="bi bi-trash"></i></a>
+                                        </td>
+                                    </tr>
+                            <?php
+                                    $i++;
+                                }
+                            } else {
+                                echo "0 results";
+                            }
+
+                            $link->close();
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </main>
         </div>
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
@@ -145,7 +190,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
     </script>
 
-    <script src="js/dashboard.js"></script>
+    <script src="../js/dashboard.js"></script>
 </body>
 
 </html>
