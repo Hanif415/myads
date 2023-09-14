@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html>
+<?php
+$title = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus ut tempore illum beatae qui eum rerum quam sunt, eveniet esse ducimus perspiciatis sapiente magni placeat recusandae fuga distinctio nostrum voluptates corrupti! Ipsum odio non adipisci officiis nostrum velit quia, at dolores facere illo placeat hic et animi ullam! Impedit in repellat consequatur cumque voluptate eligendi ut modi officia laboriosam ducimus consectetur reiciendis nam consequuntur nihil, excepturi libero molestiae, officiis ex. Sint minima possimus saepe non ut molestias officia impedit hic quo delectus eos dignissimos, amet nihil dolores quis consequuntur dolor suscipit unde magni cumque! Eveniet voluptate assumenda ut nam ipsa? ";
+if (strlen($title) < 30) {
+  return $title;
+} else {
 
-<body>
+  $new = wordwrap($title, 200);
+  $new = explode("\n", $new);
 
-  <form action="upload.php" method="post" enctype="multipart/form-data">
-    Select image to upload:
-    <input type="file" name="image" id="image">
-    <input type="submit" value="Upload Image" name="submit">
-  </form>
+  $new = $new[0] . '...';
 
-</body>
-
-</html>
+  echo $new;
+}

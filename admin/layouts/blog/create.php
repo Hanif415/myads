@@ -5,6 +5,11 @@ session_start();
 // Include config file
 require_once "../../backend/config.php";
 
+// include create.php
+include("../../utils/upload.php");
+include("../../utils/createSlug.php");
+include('../../backend/blog/create.php');
+
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
@@ -86,7 +91,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     </style>
 
     <!-- Custom sty les for this template -->
-    <link href="../../css/dashboard.css" rel="stylesheet">
+    <link href="../../css/dashboard.css rel=" stylesheet">
 </head>
 
 <body>
@@ -99,7 +104,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
-                <a class="nav-link px-3" href="logout.php">Sign out</a>
+                <a class="nav-link px-3" href="../logout.php">Sign out</a>
             </div>
         </div>
     </header>
@@ -136,37 +141,60 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">My Blogs</h1>
                 </div>
-                <form method="post" action="../../backend/blog/create.php" enctype="multipart/form-data">
+
+                <!-- Error Handling -->
+                <?php
+                if (!empty($exec_err)) {
+                    echo '<div class="alert alert-danger">' . $exec_err . '</div>';
+                }
+                ?>
+                <!-- End Error Handling -->
+
+                <form method="post" action="create.php" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="title" name="title">
+                        <input type="text" class="form-control <?php echo (!empty($title_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $title; ?>" id="title" name="title">
+                        <span class="invalid-feedback"><?php echo $title_err; ?></span>
                     </div>
                     <div class="mb-3">
                         <label for="category" class="form-label">Category</label>
-                        <select id="category" class="form-select" name="category">
-                            <option selected>Pilih Kategori</option>
+                        <select id="category" class="form-select <?php echo (!empty($category_id_err)) ? 'is-invalid' : ''; ?>" name="category_id">
+                            <option value="" selected>Pilih Kategori</option>
                             <?php
                             $query = "SELECT * FROM `categories`";
                             // FETCHING DATA FROM DATABASE
                             $result = mysqli_query($link, $query);
 
                             if (mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_assoc($result)) { ?>
-                                    <option value="<?php echo $row["id"] ?>"><?php echo $row["name"] ?></option>
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    if ($row["id"] == $category_id) {
+                            ?>
+                                        <option value="<?php echo $row["id"] ?>" selected>
+                                            <?php echo $row["name"] ?></option>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <option value="<?php echo $row["id"] ?>">
+                                            <?php echo $row["name"] ?></option>
                             <?php
+                                    }
                                 }
                             }
                             ?>
                         </select>
+                        <span class="invalid-feedback"><?php echo $category_id_err; ?></span>
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Upload images</label>
-                        <input type="file" name="image" id="image" class="form-control">
+                        <input type="file" name="image" id="image" class="form-control <?php echo (!empty($image_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $image; ?>">
+                        <span class="invalid-feedback"><?php echo $image_err; ?></span>
                     </div>
                     <div class="mb-3">
                         <label for="body" class="form-label">Body</label>
-                        <textarea name="body" id="summernote"></textarea>
+                        <textarea name="body" id="summernote" class="<?php echo (!empty($body_err)) ? 'is-invalid' : ''; ?>"><?php echo $body; ?></textarea>
+                        <span class="invalid-feedback"><?php echo $body_err; ?></span>
                     </div>
+
                     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                 </form>
             </main>
@@ -189,6 +217,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
     </script>
+
+    <script src="../../js/dashboard.js"></script>
 </body>
 
 </html>

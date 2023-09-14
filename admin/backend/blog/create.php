@@ -1,110 +1,79 @@
 <?php
-
-// Include config file
-require_once "../backend/config.php";
-require_once '../../utils/upload.php';
-
 // Define variables and initialize with empty values
-$name = $username = $password = $confirm_password = "";
-$name_err = $username_err = $password_err = $confirm_password_err = "";
+$category_id = $title = $body = "";
+$category_id_err = $title_err = $body_err =  $exec_err = "";
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // validate name 
-    if (empty(trim($_POST["name"]))) {
-        $name_err = "Please enter a name";
-    } elseif (!preg_match('/^[a-zA-Z0-9_ ]+$/', trim($_POST["name"]))) {
-        $name_err = "Name can only contain letters, numbers, and underscores.";
+    if (empty(trim($_POST["category_id"]))) {
+        $category_id_err = "category tidak boleh kosong";
     } else {
-        $name = trim($_POST["name"]);;
+        $category_id = trim($_POST["category_id"]);;
     }
 
-    // Validate username
-    if (empty(trim($_POST["username"]))) {
-        $username_err = "Please enter a username.";
-    } elseif (!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))) {
-        $username_err = "Username can only contain letters, numbers, and underscores.";
+    if (empty(trim($_POST["title"]))) {
+        $title_err = "Judul tidak boleh kosong";
     } else {
-        // Prepare a select statement
-        $sql = "SELECT id FROM users WHERE username = ?";
-
-        if ($stmt = mysqli_prepare($link, $sql)) {
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
-
-            // Set parameters
-            $param_username = trim($_POST["username"]);
-
-            // Attempt to execute the prepared statement
-            if (mysqli_stmt_execute($stmt)) {
-                /* store result */
-                mysqli_stmt_store_result($stmt);
-
-                if (mysqli_stmt_num_rows($stmt) == 1) {
-                    $username_err = "This username is already taken.";
-                } else {
-                    $username = trim($_POST["username"]);
-                }
-            } else {
-                echo "Oops! Something went wrong. Please try again later.";
-            }
-
-            // Close statement
-            mysqli_stmt_close($stmt);
-        }
+        $title = trim($_POST["title"]);
     }
 
-    // Validate password
-    if (empty(trim($_POST["password"]))) {
-        $password_err = "Please enter a password.";
-    } elseif (strlen(trim($_POST["password"])) < 6) {
-        $password_err = "Password must have atleast 6 characters.";
+    if (empty(trim($_POST["body"]))) {
+        $body_err = "Body tidak boleh kosong";
     } else {
-        $password = trim($_POST["password"]);
-    }
-
-    // Validate confirm password
-    if (empty(trim($_POST["confirm_password"]))) {
-        $confirm_password_err = "Please confirm password.";
-    } else {
-        $confirm_password = trim($_POST["confirm_password"]);
-        if (empty($password_err) && ($password != $confirm_password)) {
-            $confirm_password_err = "Password did not match.";
-        }
+        $body = trim($_POST["body"]);
     }
 
     // Check input errors before inserting in database
-    if (empty($name_err) && empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
+    if (empty($category_id_err) && empty($title_err) && empty($body_err) && $uploadOk == 1) {
 
         // Prepare an insert statement
-        $sql = "INSERT INTO users (name, username, password, profile_photo) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO blogs (user_id, category_id, title, slug, image, excerpt, body) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssss", $param_name, $param_username, $param_password, $param_photo);
-
+            mysqli_stmt_bind_param($stmt, "iisssss", $param_user_id, $param_category_id, $param_title, $param_slug, $param_image, $param_excerpt, $param_body);
 
             // Set parameters
-            $param_name = $name;
-            $param_username = $username;
-            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
-            $param_photo = "https://picsum.photos/200/300";
+            session_start();
+            $user_id = $_SESSION["id"];
+            $slug = sanitize($title);
+            $image = $_FILES["image"]["name"];
+            // make an excerpt
+            $excerpt = "";
+            if (strlen($body) < 30) {
+                $excerpt = strip_tags($body);
+            } else {
+                $new = wordwrap($body, 200);
+                $new = explode("\n", $new);
+                $new = $new[0] . '...';
+                $excerpt = strip_tags($new);
+            }
+
+            $param_user_id = $user_id;
+            $param_category_id = $category_id;
+            $param_title = $title;
+            $param_slug = $slug;
+            $param_image = $image;
+            $param_excerpt = $excerpt;
+            $param_body = $body;
 
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
                 // set session
                 session_start();
-                $_SESSION['registration_message'] = 'Registration successful. You can now log in.';
+                $_SESSION['blog_posted_message'] = 'Blog berhasil di post';
                 // Redirect to login page
-                header("location: login.php");
+                header("location: ../../layouts/blog/blog.php");
             } else {
-                echo "Oops! Something went wrong. Please try again later.";
+                $exec_err = "Oops! Something went wrong. Please try again later.";
             }
 
             // Close statement
             mysqli_stmt_close($stmt);
         }
+    } else {
+        return;
     }
 
     // Close connection
