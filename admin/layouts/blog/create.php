@@ -136,7 +136,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">My Blogs</h1>
                 </div>
-                <form method="post" action="../../backend/createBlog.php">
+                <form method="post" action="../../backend/blog/create.php" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <input type="text" class="form-control" id="title" name="title">
@@ -160,10 +160,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         </select>
                     </div>
                     <div class="mb-3">
+                        <label for="image" class="form-label">Upload images</label>
+                        <input type="file" name="image" id="image" class="form-control">
+                    </div>
+                    <div class="mb-3">
                         <label for="body" class="form-label">Body</label>
                         <textarea name="body" id="summernote"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                 </form>
             </main>
         </div>
