@@ -23,10 +23,10 @@ if (isset($_POST["submit"])) {
     }
 
     // Check if file already exists
-    // if (file_exists($target_file)) {
-    //     echo "Sorry, file already exists.";
-    //     $uploadOk = 0;
-    // }
+    if (file_exists($target_file)) {
+        $image_err = "Sorry, file name already exists.";
+        $uploadOk = 0;
+    }
 
     // Check file size
     if ($_FILES["image"]["size"] > 5000000) {
@@ -45,7 +45,7 @@ if (isset($_POST["submit"])) {
 
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
-        $image_err = "Sorry, your file was not uploaded.";
+        // $image_err = "Sorry, your file was not uploaded.";
         // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
