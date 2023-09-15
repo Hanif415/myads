@@ -31,6 +31,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <!-- Bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
+    <!-- Data tables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+
+    <!-- Custom sty les for this template -->
+    <link href="../../css/dashboard.css" rel="stylesheet">
     <style>
     .bd-placeholder-img {
         font-size: 1.125rem;
@@ -84,8 +89,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     }
     </style>
 
-    <!-- Custom sty les for this template -->
-    <link href="../../css/dashboard.css" rel="stylesheet">
 </head>
 
 <body>
@@ -97,8 +100,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search"
-            aria-label="Search">
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
                 <a class="nav-link px-3" href="../logout.php">Sign out</a>
@@ -140,13 +141,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <h1 class="h2">My Blogs</h1>
                 </div>
                 <a href="/myads/admin/layouts/blog/create.php" class="btn btn-primary mb-3">Create a new blog</a>
-                <div class="table-responsive col-lg-8">
-                    <table class="table table-striped" style="font-size: larger;">
+                <div class="table-responsive mb-5">
+                    <table id="myTable" class="table table-striped display" style="font-size: larger;">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Category</th>
+                                <th scope="col">Published</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -166,6 +168,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                 <td><?php echo $i; ?></td>
                                 <td><?php echo $row["title"] ?></td>
                                 <td><?php echo categoryName($row["category_id"]) ?></td>
+                                <td><?php echo $row["published_at"] ?></td>
                                 <td>
                                     <a href="/myads/admin/layouts/blog/show.php/<?php echo $row["id"] ?>"
                                         class="btn badge bg-primary"><i class="bi bi-eye"></i></a>
@@ -191,14 +194,26 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         </div>
     </div>
 
+    <!-- Data tables -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+    <script>
+    $(document).ready(function() {
+        let table = new DataTable('#myTable');
+        $('#myTable').DataTable();
+    });
+    </script>
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 
+    <!-- Feather Icon -->
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
         integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
     </script>
 
+    <!-- Customize js -->
     <script src="../../js/dashboard.js"></script>
 </body>
 

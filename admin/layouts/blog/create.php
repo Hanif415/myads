@@ -26,7 +26,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.108.0">
-    <title>Dashboard Template · Bootstrap v5.3</title>
+    <title>Dashboard MY ADS</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -35,12 +35,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <!-- Bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-    <!-- include summernote css/js -->
+    <!-- include summernote css -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-
-    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"> -->
-
     <link rel="stylesheet" href="../../../assets/summernote/summernote-lite.css">
+
+    <!-- Custom sty les for this template -->
+    <link href="../../css/dashboard.css" rel="stylesheet">
+
     <style>
     .bd-placeholder-img {
         font-size: 1.125rem;
@@ -92,10 +93,12 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
     }
-    </style>
 
-    <!-- Custom sty les for this template -->
-    <link href="../../css/dashboard.css" rel="stylesheet">
+    /* Customize summernote background fullscreen bcs it was transparent */
+    .note-editor.note-frame.fullscreen {
+        background-color: white;
+    }
+    </style>
 </head>
 
 <body>
@@ -158,7 +161,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 ?>
                 <!-- End Error Handling -->
 
-                <form method="post" action="create.php" enctype="multipart/form-data">
+                <form method="post" action="create.php" enctype="multipart/form-data" class="mb-5">
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <input type="text" class="form-control <?php echo (!empty($title_err)) ? 'is-invalid' : ''; ?>"
@@ -204,8 +207,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <div class="mb-3">
                         <label for="body" class="form-label">Body</label>
                         <textarea name="body" id="summernote"
-                            class="<?php echo (!empty($body_err)) ? 'is-invalid' : ''; ?>"
-                            cols="10"><?php echo $body; ?></textarea>
+                            class="<?php echo (!empty($body_err)) ? 'is-invalid' : ''; ?>" cols="30"
+                            rows="20"><?php echo $body; ?></textarea>
                         <span class="invalid-feedback"><?php echo $body_err; ?></span>
                     </div>
 
@@ -222,23 +225,38 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <!-- summernote -->
     <script>
     $(document).ready(function() {
-        $('#summernote').summernote();
+        $('#summernote').summernote({
+            height: 400,
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['view', ['fullscreen', 'codeview', 'help']],
+            ],
+            disableDragAndDrop: true,
+            tabDisable: true,
+        });
     });
     </script>
 
+    <!-- summernote js -->
+    <script src="../../../assets/summernote/summernote-lite.js"></script>
+
+    <!-- Bootstrap script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-
-    <!-- summernote js -->
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
-    <script src="../../../assets/summernote/summernote-lite.js"></script>
 
     <!-- Feather Icon -->
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
         integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
     </script>
 
+    <!-- Customize js -->
     <script src="../../js/dashboard.js"></script>
 </body>
 
