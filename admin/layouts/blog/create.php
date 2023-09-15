@@ -110,7 +110,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
-                <a class="nav-link px-3" href="../logout.php">Sign out</a>
+                <a class="nav-link px-3" href="../../backend/authentication/logout.php">Sign out</a>
             </div>
         </div>
     </header>
@@ -197,7 +197,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </div>
                     <div class="mb-3">
                         <label for="body" class="form-label">Body</label>
-                        <textarea name="body" id="summernote" class="<?php echo (!empty($body_err)) ? 'is-invalid' : ''; ?>" cols="30" rows="20"><?php echo $body; ?></textarea>
+                        <textarea name="body" id="summernote" class="<?php echo (!empty($body_err)) ? 'is-invalid' : ''; ?>"><?php echo $body; ?></textarea>
                         <span class="invalid-feedback"><?php echo $body_err; ?></span>
                     </div>
 

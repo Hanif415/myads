@@ -99,7 +99,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         </button>
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
-                <a class="nav-link px-3" href="../logout.php">Sign out</a>
+                <a class="nav-link px-3" href="../../backend/authentication/logout.php">Sign out</a>
             </div>
         </div>
     </header>
