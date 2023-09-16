@@ -161,12 +161,12 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <input type="text" name="id" hidden value="<?php echo $blog_id; ?>">
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control <?php echo (!empty($title_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $blog_title; ?>" id="title" name="title">
+                        <input type="text" class="form-control <?php echo (!empty($title_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $blog_title; ?>" id="title" name="title" required>
                         <span class="invalid-feedback"><?php echo $title_err; ?></span>
                     </div>
                     <div class="mb-3">
                         <label for="category" class="form-label">Category</label>
-                        <select id="category" class="form-select <?php echo (!empty($category_id_err)) ? 'is-invalid' : ''; ?>" name="category_id">
+                        <select id="category" class="form-select <?php echo (!empty($category_id_err)) ? 'is-invalid' : ''; ?>" name="category_id" required>
                             <option value="" selected>Pilih Kategori</option>
                             <?php
                             $query = "SELECT * FROM `categories`";
@@ -200,7 +200,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </div>
                     <div class="mb-3">
                         <label for="body" class="form-label">Body</label>
-                        <textarea name="body" id="summernote" class="<?php echo (!empty($body_err)) ? 'is-invalid' : ''; ?>"><?php echo $blog_body; ?></textarea>
+                        <textarea name="body" id="summernote" class="<?php echo (!empty($body_err)) ? 'is-invalid' : ''; ?>" required><?php echo $blog_body; ?></textarea>
                         <span class="invalid-feedback"><?php echo $body_err; ?></span>
                     </div>
 
