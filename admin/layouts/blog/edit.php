@@ -8,7 +8,7 @@ require_once "../../utils/createSlug.php";
 
 // include create.php
 include("../../utils/upload.php");
-include('../../backend/blog/create.php');
+include('../../backend/blog/edit.php');
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
@@ -145,7 +145,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">My Blogs</h1>
+                    <h1 class="h2">Edit Blog</h1>
                 </div>
 
                 <!-- Error Handling -->
@@ -156,10 +156,12 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 ?>
                 <!-- End Error Handling -->
 
-                <form method="post" action="create.php" enctype="multipart/form-data" class="mb-5">
+                <form method="post" action="edit.php" enctype="multipart/form-data" class="mb-5">
+                    <input type="text" name="blog_image" hidden value="<?php echo $blog_image; ?>">
+                    <input type="text" name="id" hidden value="<?php echo $blog_id; ?>">
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control <?php echo (!empty($title_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $title; ?>" id="title" name="title">
+                        <input type="text" class="form-control <?php echo (!empty($title_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $blog_title; ?>" id="title" name="title">
                         <span class="invalid-feedback"><?php echo $title_err; ?></span>
                     </div>
                     <div class="mb-3">
@@ -173,7 +175,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
                             if (mysqli_num_rows($result) > 0) {
                                 while ($row = mysqli_fetch_assoc($result)) {
-                                    if ($row["id"] == $category_id) {
+                                    if ($row["id"] == $blog_category_id) {
                             ?>
                                         <option value="<?php echo $row["id"] ?>" selected>
                                             <?php echo $row["name"] ?></option>
@@ -192,13 +194,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Upload images</label>
-                        <img class="img-preview img-fluid mb-1 d-block" width="150px">
+                        <img class="img-preview img-fluid mb-1 d-block" width="150px" src="../../images/<?php echo $blog_image; ?>">
                         <input type="file" name="image" id="image" class="form-control <?php echo (!empty($image_err)) ? 'is-invalid' : ''; ?>" onchange="previewImage(event)">
                         <span class="invalid-feedback"><?php echo $image_err; ?></span>
                     </div>
                     <div class="mb-3">
                         <label for="body" class="form-label">Body</label>
-                        <textarea name="body" id="summernote" class="<?php echo (!empty($body_err)) ? 'is-invalid' : ''; ?>"><?php echo $body; ?></textarea>
+                        <textarea name="body" id="summernote" class="<?php echo (!empty($body_err)) ? 'is-invalid' : ''; ?>"><?php echo $blog_body; ?></textarea>
                         <span class="invalid-feedback"><?php echo $body_err; ?></span>
                     </div>
 
