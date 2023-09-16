@@ -6,8 +6,6 @@ session_start();
 require_once "../../backend/config.php";
 require_once "../../utils/createSlug.php";
 
-// include create.php
-include("../../utils/upload.php");
 include('../../backend/blog/create.php');
 
 // Check if the user is logged in, if not then redirect him to login page

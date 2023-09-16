@@ -19,13 +19,16 @@ $blog_id = $_GET['id'];
 $sql = "DELETE FROM blogs
         WHERE id = $blog_id";
 
-$deleted = 1;
-$filePath = "../../images/"
+// SQL QUERY for getting image
+$query = "SELECT image FROM `blogs` WHERE id = $blog_id;";
+// FETCHING DATA FROM DATABASE
+$result = mysqli_query($link, $query);
+$row = mysqli_fetch_assoc($result);
+$image = $row["image"];
+$filePath = "../../images/$image";
+// delete the file if the data deleted
 if (file_exists($filePath)) {
     unlink($filePath);
-
-} else {
-    echo "File does not exists";
 }
 
 if (mysqli_query($link, $sql)) {
