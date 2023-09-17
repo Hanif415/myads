@@ -6,8 +6,7 @@ session_start();
 require_once "../../backend/config.php";
 require_once "../../utils/createSlug.php";
 
-include('../../backend/blog/create.php');
-// include('../../utils/upload.php');
+include('../../backend/categories/create.php');
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
@@ -126,13 +125,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/myads/admin/layouts/blog/blog.php">
+                            <a class="nav-link" aria-current="page" href="/myads/admin/layouts/blog/blog.php">
                                 <span data-feather="layout" class="align-text-bottom"></span>
                                 Blogs
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/myads/admin/layouts/categories/categories.php">
+                            <a class="nav-link active" aria-current="page" href="/myads/admin/layouts/categories/categories.php">
                                 <span data-feather="tag" class="align-text-bottom"></span>
                                 Categories
                             </a>
@@ -156,81 +155,17 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <!-- End Error Handling -->
 
                 <form method="post" action="create.php" enctype="multipart/form-data" class="mb-5">
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control <?php echo (!empty($title_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $title; ?>" id="title" name="title">
-                        <span class="invalid-feedback"><?php echo $title_err; ?></span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="category" class="form-label">Category</label>
-                        <select id="category" class="form-select <?php echo (!empty($category_id_err)) ? 'is-invalid' : ''; ?>" name="category_id">
-                            <option value="" selected>Pilih Kategori</option>
-                            <?php
-                            $query = "SELECT * FROM `categories`";
-                            // FETCHING DATA FROM DATABASE
-                            $result = mysqli_query($link, $query);
-
-                            if (mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    if ($row["id"] == $category_id) {
-                            ?>
-                                        <option value="<?php echo $row["id"] ?>" selected>
-                                            <?php echo $row["name"] ?></option>
-                                    <?php
-                                    } else {
-                                    ?>
-                                        <option value="<?php echo $row["id"] ?>">
-                                            <?php echo $row["name"] ?></option>
-                            <?php
-                                    }
-                                }
-                            }
-                            ?>
-                        </select>
-                        <span class="invalid-feedback"><?php echo $category_id_err; ?></span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="image" class="form-label">Upload images</label>
-                        <img class="img-preview img-fluid mb-1 d-block" width="150px">
-                        <input type="file" name="image" id="image" class="form-control <?php echo (!empty($image_err)) ? 'is-invalid' : ''; ?>" onchange="previewImage(event)">
-                        <span class="invalid-feedback"><?php echo $image_err; ?></span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="body" class="form-label">Body</label>
-                        <textarea name="body" id="summernote" class="<?php echo (!empty($body_err)) ? 'is-invalid' : ''; ?>"><?php echo $body; ?></textarea>
-                        <span class="invalid-feedback"><?php echo $body_err; ?></span>
+                    <div class="mb-3 col-lg-5">
+                        <label for="name" class="form-label">Nama Kategori</label>
+                        <input type="text" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>" id="name" name="name">
+                        <span class="invalid-feedback"><?php echo $name_err; ?></span>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" name="submit">Publish</button>
+                    <button type="submit" class="btn btn-primary" name="submit">Create</button>
                 </form>
             </main>
         </div>
     </div>
-
-    <!-- include summernote libraries(jQuery, js) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-
-    <!-- summernote -->
-    <script>
-        $(document).ready(function() {
-            $('#summernote').summernote({
-                height: 400,
-                toolbar: [
-                    // [groupName, [list of button]]
-                    ['style', ['bold', 'italic', 'underline', 'clear']],
-                    ['font', ['strikethrough', 'superscript', 'subscript']],
-                    ['fontsize', ['fontsize']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['height', ['height']],
-                    ['view', ['fullscreen', 'codeview', 'help']],
-                ],
-                disableDragAndDrop: true,
-                tabDisable: true,
-            });
-        });
-    </script>
 
     <!-- summernote js -->
     <script src="../../../assets/summernote/summernote-lite.js"></script>
@@ -246,19 +181,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <!-- Customize js -->
     <script src="../../js/dashboard.js"></script>
 
-    <script>
-        function previewImage(event) {
-            var input = event.target;
-            var image = document.querySelector('.img-preview');
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    image.src = e.target.result;
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
 </body>
 
 </html>

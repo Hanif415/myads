@@ -6,7 +6,6 @@ session_start();
 require_once "../../backend/config.php";
 require_once "../../utils/createSlug.php";
 
-// include create.php
 include('../../backend/blog/edit.php');
 
 // Check if the user is logged in, if not then redirect him to login page
@@ -132,7 +131,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/myads/admin/layouts/blog/blog.php">
+                            <a class="nav-link" aria-current="page" href="/myads/admin/layouts/categories/categories.php">
                                 <span data-feather="tag" class="align-text-bottom"></span>
                                 Categories
                             </a>

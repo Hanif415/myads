@@ -118,7 +118,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/myads/admin/layouts/blog/blog.php">
+                            <a class="nav-link" aria-current="page" href="/myads/admin/layouts/categories/categories.php">
                                 <span data-feather="tag" class="align-text-bottom"></span>
                                 Categories
                             </a>

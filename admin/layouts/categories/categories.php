@@ -4,16 +4,13 @@ session_start();
 
 // Include config file
 require_once "../../backend/config.php";
-require_once "../../utils/createSlug.php";
-
-include('../../backend/blog/create.php');
-// include('../../utils/upload.php');
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
 }
+
 ?>
 
 <!doctype html>
@@ -25,7 +22,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.108.0">
-    <title>Dashboard MY ADS</title>
+    <title>Dashboard Template · Bootstrap v5.3</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -33,13 +30,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <!-- Bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-    <!-- include summernote css -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/summernote/summernote-lite.css">
+    <!-- Data tables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
 
     <!-- Custom sty les for this template -->
     <link href="../../css/dashboard.css" rel="stylesheet">
-
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -91,12 +86,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
         }
-
-        /* Customize summernote background fullscreen bcs it was transparent */
-        .note-editor.note-frame.fullscreen {
-            background-color: white;
-        }
     </style>
+
 </head>
 
 <body>
@@ -106,7 +97,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
                 <a class="nav-link px-3" href="../../backend/authentication/logout.php">Sign out</a>
@@ -126,13 +116,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/myads/admin/layouts/blog/blog.php">
+                            <a class="nav-link" aria-current="page" href="/myads/admin/layouts/blog/blog.php">
                                 <span data-feather="layout" class="align-text-bottom"></span>
                                 Blogs
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/myads/admin/layouts/categories/categories.php">
+                            <a class="nav-link active" aria-current="page" href="/myads/admin/layouts/categories/categories.php">
                                 <span data-feather="tag" class="align-text-bottom"></span>
                                 Categories
                             </a>
@@ -144,98 +134,75 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">My Blogs</h1>
+                    <h1 class="h2">Categories</h1>
                 </div>
-
-                <!-- Error Handling -->
+                <a href="/myads/admin/layouts/categories/create.php" class="btn btn-primary mb-3">Create a new
+                    category</a>
                 <?php
-                if (!empty($exec_err)) {
-                    echo '<div class="alert alert-danger">' . $exec_err . '</div>';
+
+                if (isset($_SESSION['blog_posted_message'])) {
+                    echo '<div class="alert alert-success">' . $_SESSION['blog_posted_message'] . '</div>';
+                    unset($_SESSION['blog_posted_message']);
                 }
                 ?>
-                <!-- End Error Handling -->
+                <div class="table-responsive mb-5 col-sm-5">
+                    <table id="myTable" class="table table-striped display" style="font-size: larger;">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php  // SQL QUERY
 
-                <form method="post" action="create.php" enctype="multipart/form-data" class="mb-5">
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control <?php echo (!empty($title_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $title; ?>" id="title" name="title">
-                        <span class="invalid-feedback"><?php echo $title_err; ?></span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="category" class="form-label">Category</label>
-                        <select id="category" class="form-select <?php echo (!empty($category_id_err)) ? 'is-invalid' : ''; ?>" name="category_id">
-                            <option value="" selected>Pilih Kategori</option>
-                            <?php
-                            $query = "SELECT * FROM `categories`";
+                            $query = "SELECT * FROM `categories` ORDER BY name DESC;";
                             // FETCHING DATA FROM DATABASE
                             $result = mysqli_query($link, $query);
 
                             if (mysqli_num_rows($result) > 0) {
+                                // OUTPUT DATA OF EACH ROW
+                                $i = 1;
                                 while ($row = mysqli_fetch_assoc($result)) {
-                                    if ($row["id"] == $category_id) {
                             ?>
-                                        <option value="<?php echo $row["id"] ?>" selected>
-                                            <?php echo $row["name"] ?></option>
-                                    <?php
-                                    } else {
-                                    ?>
-                                        <option value="<?php echo $row["id"] ?>">
-                                            <?php echo $row["name"] ?></option>
-                            <?php
-                                    }
-                                }
-                            }
-                            ?>
-                        </select>
-                        <span class="invalid-feedback"><?php echo $category_id_err; ?></span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="image" class="form-label">Upload images</label>
-                        <img class="img-preview img-fluid mb-1 d-block" width="150px">
-                        <input type="file" name="image" id="image" class="form-control <?php echo (!empty($image_err)) ? 'is-invalid' : ''; ?>" onchange="previewImage(event)">
-                        <span class="invalid-feedback"><?php echo $image_err; ?></span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="body" class="form-label">Body</label>
-                        <textarea name="body" id="summernote" class="<?php echo (!empty($body_err)) ? 'is-invalid' : ''; ?>"><?php echo $body; ?></textarea>
-                        <span class="invalid-feedback"><?php echo $body_err; ?></span>
-                    </div>
+                                    <tr>
+                                        <td><?php echo $i; ?></td>
+                                        <td><?php echo $row["name"] ?></td>
+                                        <td>
 
-                    <button type="submit" class="btn btn-primary" name="submit">Publish</button>
-                </form>
+                                            <a href="/myads/admin/layouts/categories/edit.php?id=<?php echo $row["id"] ?>" class="btn badge bg-warning"><i class="bi bi-pencil-square"></i></a>
+                                            <a href="../../backend/categories/delete.php?id=<?php echo $row["id"] ?>" class="btn badge bg-danger" onclick="confirm('Apakah anda ingin menghapus kategori ini?')"><i class="bi bi-trash"></i></a>
+                                        </td>
+                                    </tr>
+                            <?php
+                                    $i++;
+                                }
+                            } else {
+                                echo "0 results";
+                            }
+
+                            $link->close();
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
             </main>
         </div>
     </div>
 
-    <!-- include summernote libraries(jQuery, js) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-    <!-- summernote -->
+    <!-- Data tables -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready(function() {
-            $('#summernote').summernote({
-                height: 400,
-                toolbar: [
-                    // [groupName, [list of button]]
-                    ['style', ['bold', 'italic', 'underline', 'clear']],
-                    ['font', ['strikethrough', 'superscript', 'subscript']],
-                    ['fontsize', ['fontsize']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['height', ['height']],
-                    ['view', ['fullscreen', 'codeview', 'help']],
-                ],
-                disableDragAndDrop: true,
-                tabDisable: true,
-            });
+            let table = new DataTable('#myTable');
+            $('#myTable').DataTable();
         });
     </script>
-
-    <!-- summernote js -->
-    <script src="../../../assets/summernote/summernote-lite.js"></script>
-
-    <!-- Bootstrap script -->
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 
@@ -245,20 +212,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
     <!-- Customize js -->
     <script src="../../js/dashboard.js"></script>
-
-    <script>
-        function previewImage(event) {
-            var input = event.target;
-            var image = document.querySelector('.img-preview');
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    image.src = e.target.result;
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
 </body>
 
 </html>
