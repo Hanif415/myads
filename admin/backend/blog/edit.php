@@ -143,6 +143,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // $image_err = "Sorry, your file was not uploaded.";
                     // if everything is ok, try to upload file
                 } else {
+                    $image = $_POST["blog_image"];;
+                    $filePath = "../../images/$image";
+                    // delete the file if the image change
+                    if (file_exists($filePath)) {
+                        unlink($filePath);
+                    }
+
                     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
                         // echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
                     } else {

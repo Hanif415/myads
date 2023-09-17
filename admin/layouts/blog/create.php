@@ -260,21 +260,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <script src="../../js/dashboard.js"></script>
 
     <script>
-    // function previewImage() {
-    //     var input = event.target;
-    //     const imgPreview = document.querySelector('.img-preview');
-
-    //     imgPreview.style.display = 'block';
-
-    //     const oFReader = new FileReader();
-
-
-    //     oFReader.onLoad = function(oFREvent) {
-    //         imgPreview.src = oFREvent.target.result;
-    //     }
-    //     oFReader.readAsDataURL(image.files[0]);
-    // }
-
     function previewImage(event) {
         var input = event.target;
         var image = document.querySelector('.img-preview');
