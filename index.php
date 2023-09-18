@@ -4,6 +4,7 @@ require_once "admin/backend/config.php";
 require_once "utils/changeDateFormat.php";
 
 include('backend/getNewBlog.php');
+include('backend/getFewBlog.php');
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +27,7 @@ include('backend/getNewBlog.php');
 
   <!-- Additional CSS Files -->
   <link rel="stylesheet" href="assets/css/fontawesome.css">
-  <link rel="stylesheet" href="assets/css/templatemo-digimedia-v3.css">
+  <link rel="stylesheet" href="assets/css//templatemo-digimedia-v3.css">
   <link rel="stylesheet" href="assets/css/animated.css">
   <link rel="stylesheet" href="assets/css/owl.css">
 </head>
@@ -586,23 +587,23 @@ include('backend/getNewBlog.php');
         <div class="col-lg-6 show-up wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
           <div class="blog-post">
             <div class="thumb">
-              <a href="/myads/blog_detail/?id=<?php echo $newBlog["id"]; ?>"><img src="admin/images/<?php echo $newBlog["image"]; ?>" alt=""></a>
+              <a href="/myads/layouts/blogs/blog_detail/?id=<?php echo $newBlog["id"]; ?>"><img src="admin/images/<?php echo $newBlog["image"]; ?>" alt=""></a>
             </div>
             <div class="down-content">
               <span class="category"><?php echo categoryName($newBlog["category_id"]); ?></span>
               <span class="date"><?php changeDateFormat($newBlog["published_at"]); ?></span>
-              <a href="/myads/blog_detail/?id=<?php echo $newBlog["id"]; ?>">
+              <a href="/myads/blogs/blog_detail/?id=<?php echo $newBlog["id"]; ?>">
                 <h4><?php echo $newBlog["title"]; ?></h4>
               </a>
               <p><?php echo $newBlog["excerpt"]; ?></p>
               <div class="row">
                 <div class="col-sm col-12">
                   <span class="author"><img src="<?php echo $user["profile_photo"] ?>" alt="" style="max-height: 54px;">
-                    By: <?php echo $user["username"] ?>
+                    By: <?php echo $user["name"] ?>
                   </span>
                 </div>
                 <div class="col-sm col-12">
-                  <div class="border-first-button"><a href="/myads/blogs>">Discover More</a></div>
+                  <div class="border-first-button"><a href="/myads/layouts/blogs>">Discover More</a></div>
                 </div>
               </div>
             </div>
@@ -611,51 +612,35 @@ include('backend/getNewBlog.php');
         <div class="col-lg-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
           <div class="blog-posts">
             <div class="row">
-              <div class="col-lg-12">
-                <div class="post-item">
-                  <div class="thumb">
-                    <a href="#"><img src="assets/images/blog-post-02.jpg" alt=""></a>
+              <?php
+              if (mysqli_num_rows($resultFewBlogs) > 0) {
+                $skipCount = 1;
+                while ($blogs = mysqli_fetch_assoc($resultFewBlogs)) {
+                  // skip 1 item
+                  if ($skipCount == 1) {
+                    // Skip one item
+                    $skipCount++;
+                    continue;
+                  }
+              ?>
+                  <div class="col-lg-12 mb-4">
+                    <div class="post-item">
+                      <div class="thumb">
+                        <a href="/myads/layouts/blogs/blog_detail/?id=<?php echo $newBlog["id"]; ?>"><img src="admin/images/<?php echo $blogs["image"]; ?>" alt=""></a>
+                      </div>
+                      <div class="right-content">
+                        <span class="category"><?php echo categoryName($blogs["category_id"]) ?></span>
+                        <span class="date"><?php changeDateFormat($blogs["published_at"]); ?></span>
+                        <a href="/myads/layouts/blogs/blog_detail/?id=<?php echo $newBlog["id"]; ?>">
+                          <h4><?php echo $blogs["title"]; ?></h4>
+                        </a>
+                        <p><?php echo $blogs["excerpt"]; ?></p>
+                      </div>
+                    </div>
                   </div>
-                  <div class="right-content">
-                    <span class="category">SEO Analysis</span>
-                    <span class="date">24 September 2021</span>
-                    <a href="#">
-                      <h4>Lorem Ipsum Dolor Sit Amei Eiusmod Tempor</h4>
-                    </a>
-                    <p>Lorem ipsum dolor sit amet, cocteturi adipiscing eliterski.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <div class="post-item">
-                  <div class="thumb">
-                    <a href="#"><img src="assets/images/blog-post-03.jpg" alt=""></a>
-                  </div>
-                  <div class="right-content">
-                    <span class="category">SEO Analysis</span>
-                    <span class="date">24 September 2021</span>
-                    <a href="#">
-                      <h4>Lorem Ipsum Dolor Sit Amei Eiusmod Tempor</h4>
-                    </a>
-                    <p>Lorem ipsum dolor sit amet, cocteturi adipiscing eliterski.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <div class="post-item last-post-item">
-                  <div class="thumb">
-                    <a href="#"><img src="assets/images/blog-post-04.jpg" alt=""></a>
-                  </div>
-                  <div class="right-content">
-                    <span class="category">SEO Analysis</span>
-                    <span class="date">24 September 2021</span>
-                    <a href="#">
-                      <h4>Lorem Ipsum Dolor Sit Amei Eiusmod Tempor</h4>
-                    </a>
-                    <p>Lorem ipsum dolor sit amet, cocteturi adipiscing eliterski.</p>
-                  </div>
-                </div>
-              </div>
+              <?php
+                }
+              } ?>
             </div>
           </div>
         </div>

@@ -1862,7 +1862,7 @@ Blog
 }
 
 .post-item {
-  margin-bottom: 62px;
+  /* margin-bottom: 62px; */
 }
 
 .last-post-item {
@@ -1878,6 +1878,8 @@ Blog
 .post-item .thumb img {
   border-radius: 23px;
   display: inline-block;
+  max-width: 250px;
+  max-height: 250px;
 }
 
 .post-item .right-content {
