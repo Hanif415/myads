@@ -1,16 +1,22 @@
+<?php
+require_once "admin/backend/config.php";
+
+require_once "utils/changeDateFormat.php";
+
+include('backend/getNewBlog.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <title>MY ADS</title>
 
@@ -23,13 +29,6 @@
   <link rel="stylesheet" href="assets/css/templatemo-digimedia-v3.css">
   <link rel="stylesheet" href="assets/css/animated.css">
   <link rel="stylesheet" href="assets/css/owl.css">
-  <!--
-
-TemplateMo 568 DigiMedia
-
-https://templatemo.com/tm-568-digimedia
-
--->
 </head>
 
 <body>
@@ -45,26 +44,6 @@ https://templatemo.com/tm-568-digimedia
       </div>
     </div>
   </div>
-  <!-- ***** Preloader End ***** -->
-  <!-- Pre-header Starts -->
-  <!-- <div class="pre-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-sm-8 col-7">
-          <ul class="info">
-            <li><a href="#"><i class="fa fa-envelope"></i>digimedia@company.com</a></li>
-            <li><a href="#"><i class="fa fa-phone"></i>010-020-0340</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-4 col-sm-4 col-5">
-          <ul class="social-media">
-            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <!-- Pre-header End -->
 
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
@@ -107,7 +86,8 @@ https://templatemo.com/tm-568-digimedia
                 <div class="row">
                   <div class="col-lg-12">
                     <h6>MY ADS</h6>
-                    <h2>Tumbuhkan Bisnis Anda bersama <span>MY ADS!</span> Melalui Inovasi dalam Advertising &
+                    <h2>Tumbuhkan Bisnis Anda bersama <span>MY ADS!</span> Melalui Inovasi dalam
+                      Advertising &
                       Kreativitas!
                     </h2>
                     <!-- <p>Kami dengan bangga mempersembahkan My Ads, sebuah perusahaan inovatif yang berfokus pada solusi
@@ -149,9 +129,12 @@ https://templatemo.com/tm-568-digimedia
                   <h4>Who is <em>MY ADS</em></h4>
                   <div class="line-dec"></div>
                 </div>
-                <p>Visi kami adalah menjadi pionir dalam industri digital advertising dengan memberikan pendekatan yang
-                  cerdas, kreatif, dan berdaya saing. Melalui tim berbakat kami, yang terdiri dari para ahli digital
-                  marketing, desainer kreatif, dan analis data yang berpengalaman, kami menghadirkan solusi yang unik
+                <p>Visi kami adalah menjadi pionir dalam industri digital advertising dengan memberikan
+                  pendekatan yang
+                  cerdas, kreatif, dan berdaya saing. Melalui tim berbakat kami, yang terdiri dari
+                  para ahli digital
+                  marketing, desainer kreatif, dan analis data yang berpengalaman, kami menghadirkan
+                  solusi yang unik
                   dan efektif untuk memenuhi kebutuhan khusus setiap klien.</p>
               </div>
             </div>
@@ -170,15 +153,18 @@ https://templatemo.com/tm-568-digimedia
                     <div class="card">
                       <div class="row text-sm-start text-center">
                         <div class="col-sm-5 col-md-3 col-12">
-                          <img class="card-img-top" style="width: 15rem;" src=" assets/images/work1.png"
-                            alt="Card image cap">
+                          <img class="card-img-top" style="width: 15rem;" src=" assets/images/work1.png" alt="Card image cap">
                         </div>
                         <div class="col-sm-7 col-md-9 col-12">
                           <div class="card-body">
-                            <h5 class="card-title">Customizable Digital Advertising Strategies</h5>
-                            <p class="card-text">Kami menyadari bahwa setiap klien memiliki tujuan unik. Oleh karena
-                              itu, kami menghadirkan strategi digital advertising yang dapat disesuaikan untuk mencapai
-                              hasil yang optimal sesuai dengan kebutuhan dan anggaran masing-masing klien.</p>
+                            <h5 class="card-title">Customizable Digital Advertising
+                              Strategies</h5>
+                            <p class="card-text">Kami menyadari bahwa setiap klien memiliki
+                              tujuan unik. Oleh karena
+                              itu, kami menghadirkan strategi digital advertising yang
+                              dapat disesuaikan untuk mencapai
+                              hasil yang optimal sesuai dengan kebutuhan dan anggaran
+                              masing-masing klien.</p>
                           </div>
                         </div>
                       </div>
@@ -188,15 +174,16 @@ https://templatemo.com/tm-568-digimedia
                     <div class="card">
                       <div class="row text-sm-start text-center">
                         <div class="col-sm-5 col-md-3 col-12">
-                          <img class="card-img-top" style="width: 15rem;" src="assets/images/work2.jpg"
-                            alt="Card image cap">
+                          <img class="card-img-top" style="width: 15rem;" src="assets/images/work2.jpg" alt="Card image cap">
                         </div>
                         <div class="col-sm-7 col-md-9 col-12">
                           <div class="card-body">
                             <h5 class="card-title">Limitless Creativity</h5>
-                            <p class="card-text">Tim desainer kreatif kami memiliki keahlian untuk menciptakan konten
+                            <p class="card-text">Tim desainer kreatif kami memiliki keahlian
+                              untuk menciptakan konten
                               visual
-                              yang menarik dan efektif, mulai dari logo hingga kampanye iklan digital, untuk memberikan
+                              yang menarik dan efektif, mulai dari logo hingga kampanye
+                              iklan digital, untuk memberikan
                               dampak maksimal bagi merek klien.</p>
                           </div>
                         </div>
@@ -207,15 +194,16 @@ https://templatemo.com/tm-568-digimedia
                     <div class="card">
                       <div class="row text-sm-start text-center">
                         <div class="col-sm-5 col-md-3 col-12">
-                          <img class="card-img-top" style="width: 15rem;" src="assets/images/work3.jpg"
-                            alt="Card image cap">
+                          <img class="card-img-top" style="width: 15rem;" src="assets/images/work3.jpg" alt="Card image cap">
                         </div>
                         <div class="col-sm-7 col-md-9 col-12">
                           <div class="card-body">
                             <h5 class="card-title">In-depth Data Analysis</h5>
-                            <p class="card-text">Di My Ads, kami mengintegrasikan analisis data mendalam dalam
+                            <p class="card-text">Di My Ads, kami mengintegrasikan analisis
+                              data mendalam dalam
                               pendekatan
-                              kami. Kami menggali data untuk mengoptimalkan kampanye klien dan memastikan investasi
+                              kami. Kami menggali data untuk mengoptimalkan kampanye klien
+                              dan memastikan investasi
                               klien
                               kami memberikan hasil yang terukur.</p>
                           </div>
@@ -232,37 +220,6 @@ https://templatemo.com/tm-568-digimedia
       </div>
     </div>
   </div>
-
-  <!-- <div id="about" class="about section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="row">
-            <div class="col-lg-12 align-self-center  wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
-              <div class="about-right-content">
-                <div class="section-heading">
-                  <h4>What we working on, anyway</h4>
-                  <div class="line-dec"></div>
-                </div>
-                <h5 style="margin-top: 15px;">Customizable Digital Advertising Strategies</h5>
-                <p>Kami menyadari bahwa setiap klien memiliki tujuan unik. Oleh karena itu, kami menghadirkan strategi
-                  digital advertising yang dapat disesuaikan untuk mencapai hasil yang optimal sesuai dengan kebutuhan
-                  dan anggaran masing-masing klien.</p>
-                <h5>Limitless Creativity</h5>
-                <p>Tim desainer kreatif kami memiliki bakat dan keterampilan untuk menciptakan konten visual yang
-                  menarik, unik, dan efektif. Dari perancangan logo hingga kampanye iklan digital yang menarik
-                  perhatian, kami berusaha untuk memberikan dampak maksimal bagi merek klien kami.</p>
-                <h5>In-depth Data Analysis</h5>
-                <p>Di My Ads, kami tidak hanya menyediakan solusi berdasarkan intuisi semata. Analisis data yang
-                  mendalam merupakan salah satu pilar dalam pendekatan kami. Kami menggali informasi berharga dari data
-                  untuk mengoptimalkan kampanye dan memastikan investasi klien kami memberikan hasil yang terukur.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
 
   <div id="services" class="services section">
     <div class="container">
@@ -316,23 +273,29 @@ https://templatemo.com/tm-568-digimedia
                               <div class="left-text">
                                 <h4>Digital Marketing Optimization</h4>
                                 <p>
-                                  Digital Marketing Optimization dari My Ads adalah layanan khusus yang dirancang
+                                  Digital Marketing Optimization dari My Ads adalah
+                                  layanan khusus yang dirancang
                                   untuk
-                                  meningkatkan efektivitas dan hasil dari kampanye pemasaran digital Anda. Tim ahli di
-                                  My Ads akan bekerja sama dengan Anda untuk mengoptimalkan strategi pemasaran digital
-                                  yang sedang berjalan dan menghadirkan rekomendasi serta taktik yang disesuaikan
+                                  meningkatkan efektivitas dan hasil dari kampanye
+                                  pemasaran digital Anda. Tim ahli di
+                                  My Ads akan bekerja sama dengan Anda untuk
+                                  mengoptimalkan strategi pemasaran digital
+                                  yang sedang berjalan dan menghadirkan rekomendasi
+                                  serta taktik yang disesuaikan
                                   dengan
                                   tujuan bisnis Anda.</p>
                                 <p>Scope of work:</p>
-                                <div class="ticks-list"><span><i class="fa fa-check"></i> Keyword research and
+                                <div class="ticks-list"><span><i class="fa fa-check"></i> Keyword research
+                                    and
                                     optimization</span>
-                                  <span><i class="fa fa-check"></i> Bidding PPC Marketplace</span> <span><i
-                                      class="fa fa-check"></i>
+                                  <span><i class="fa fa-check"></i> Bidding PPC
+                                    Marketplace</span> <span><i class="fa fa-check"></i>
                                     Forecast Inventory</span>
-                                  <span><i class="fa fa-check"></i> Forecast sales</span> <span><i
-                                      class="fa fa-check"></i>
+                                  <span><i class="fa fa-check"></i> Forecast
+                                    sales</span> <span><i class="fa fa-check"></i>
                                     Maintenance Meta Ads</span> <span><i class="fa fa-check"></i> Visit
-                                    1x/Month</span><span><i class="fa fa-check"></i> Monthly Report</span><span>
+                                    1x/Month</span><span><i class="fa fa-check"></i>
+                                    Monthly Report</span><span>
                                 </div>
                               </div>
                             </div>
@@ -353,23 +316,29 @@ https://templatemo.com/tm-568-digimedia
                               <div class="left-text">
                                 <h4>Creative Content Optimization</h4>
                                 <p>
-                                  Creative Content Optimization dari My Ads adalah layanan khusus yang ditujukan untuk
-                                  meningkatkan kualitas dan daya tarik dari konten kreatif dalam kampanye pemasaran
-                                  Anda. Tim ahli di My Ads akan bekerja sama dengan Anda untuk mengoptimalkan dan
-                                  menghadirkan konten kreatif yang menarik, relevan, dan berdampak positif bagi
+                                  Creative Content Optimization dari My Ads adalah
+                                  layanan khusus yang ditujukan untuk
+                                  meningkatkan kualitas dan daya tarik dari konten
+                                  kreatif dalam kampanye pemasaran
+                                  Anda. Tim ahli di My Ads akan bekerja sama dengan
+                                  Anda untuk mengoptimalkan dan
+                                  menghadirkan konten kreatif yang menarik, relevan,
+                                  dan berdampak positif bagi
                                   audiens
                                   Anda.</p>
                                 <p>Scope of work:</p>
                                 <div class="ticks-list"><span><i class="fa fa-check"></i> Social Media
                                     Maintenance</span>
-                                  <span><i class="fa fa-check"></i> Admin (post only)</span> <span><i
-                                      class="fa fa-check"></i>
+                                  <span><i class="fa fa-check"></i> Admin (post
+                                    only)</span> <span><i class="fa fa-check"></i>
                                     Ads Content</span>
-                                  <span><i class="fa fa-check"></i> Editorial Plan: 10 Feeds + 30/31 Stories +
+                                  <span><i class="fa fa-check"></i> Editorial Plan: 10
+                                    Feeds + 30/31 Stories +
                                     Caption</span> <span><i class="fa fa-check"></i>
                                     Timeline Scheduling</span> <span><i class="fa fa-check"></i> Visit
-                                    1x/Month</span><span><i class="fa fa-check"></i> Monthly Report</span><span><i
-                                      class="fa fa-check"></i> Content Planning</span>
+                                    1x/Month</span><span><i class="fa fa-check"></i>
+                                    Monthly Report</span><span><i class="fa fa-check"></i> Content
+                                    Planning</span>
                                 </div>
                               </div>
                             </div>
@@ -390,26 +359,30 @@ https://templatemo.com/tm-568-digimedia
                               <div class="left-text">
                                 <h4>Bundling Digital Marketing + Creative Content</h4>
                                 <p>Dengan layanan bundling kami, Anda mendapatkan solusi
-                                  yang lengkap untuk strategi pemasaran yang cerdas dan
+                                  yang lengkap untuk strategi pemasaran yang cerdas
+                                  dan
                                   konten yang penuh daya tarik.</p>
-                                <div class="ticks-list"><span><i class="fa fa-check"></i> Keyword research and
+                                <div class="ticks-list"><span><i class="fa fa-check"></i> Keyword research
+                                    and
                                     optimization</span>
-                                  <span><i class="fa fa-check"></i> Bidding PPC Marketplace</span> <span><i
-                                      class="fa fa-check"></i>
+                                  <span><i class="fa fa-check"></i> Bidding PPC
+                                    Marketplace</span> <span><i class="fa fa-check"></i>
                                     Forecast Inventory</span>
-                                  <span><i class="fa fa-check"></i> Forecast sales</span> <span><i
-                                      class="fa fa-check"></i>
+                                  <span><i class="fa fa-check"></i> Forecast
+                                    sales</span> <span><i class="fa fa-check"></i>
                                     Maintenance Meta Ads</span><span><i class="fa fa-check"></i> Monthly
                                     Report</span><span><span><i class="fa fa-check"></i> Social Media
                                       Maintenance</span>
-                                    <span><i class="fa fa-check"></i> Admin (post only)</span> <span><i
-                                        class="fa fa-check"></i>
+                                    <span><i class="fa fa-check"></i> Admin (post
+                                      only)</span> <span><i class="fa fa-check"></i>
                                       Ads Content</span>
-                                    <span><i class="fa fa-check"></i> Editorial Plan: 10 Feeds + 30/31 Stories +
+                                    <span><i class="fa fa-check"></i> Editorial
+                                      Plan: 10 Feeds + 30/31 Stories +
                                       Caption</span> <span><i class="fa fa-check"></i>
                                       Timeline Scheduling</span> <span><i class="fa fa-check"></i> Visit
-                                      1x/Month</span><span><i class="fa fa-check"></i> Monthly Report</span><span><i
-                                        class="fa fa-check"></i> Content Planning</span>
+                                      1x/Month</span><span><i class="fa fa-check"></i> Monthly
+                                      Report</span><span><i class="fa fa-check"></i> Content
+                                      Planning</span>
                                 </div>
                               </div>
                             </div>
@@ -429,49 +402,73 @@ https://templatemo.com/tm-568-digimedia
                             <div class="col-lg-12 align-self-center">
                               <div class="left-text">
                                 <h4>Add On</h4>
-                                <p>Dengan layanan add-on ini, kami memberikan solusi yang komprehensif untuk
+                                <p>Dengan layanan add-on ini, kami memberikan solusi
+                                  yang komprehensif untuk
                                   memperkuat
-                                  dan mengembangkan merek Anda. Setiap elemen ini dirancang untuk menambah daya tarik
-                                  dan efektivitas dalam upaya pemasaran dan branding Anda.</p>
+                                  dan mengembangkan merek Anda. Setiap elemen ini
+                                  dirancang untuk menambah daya tarik
+                                  dan efektivitas dalam upaya pemasaran dan branding
+                                  Anda.</p>
                                 <h4>Sessional Look Book: </h4>
                                 <div class="ticks-list">
-                                  <span><i class="fa fa-check"></i> Photographer</span>
+                                  <span><i class="fa fa-check"></i>
+                                    Photographer</span>
                                   <span><i class="fa fa-check"></i> Talent</span>
-                                  <span><i class="fa fa-check"></i> Concept by request</span>
-                                  <span><i class="fa fa-check"></i> Editing photo 60 output</span>
-                                  <span><i class="fa fa-check"></i> Tools on availablity</span>
+                                  <span><i class="fa fa-check"></i> Concept by
+                                    request</span>
+                                  <span><i class="fa fa-check"></i> Editing photo 60
+                                    output</span>
+                                  <span><i class="fa fa-check"></i> Tools on
+                                    availablity</span>
                                 </div>
                                 <h4>Video Campaign: </h4>
                                 <div class="ticks-list">
-                                  <span><i class="fa fa-check"></i> Videographer</span>
+                                  <span><i class="fa fa-check"></i>
+                                    Videographer</span>
                                   <span><i class="fa fa-check"></i> Talent</span>
-                                  <span><i class="fa fa-check"></i> Concept by request</span>
-                                  <span><i class="fa fa-check"></i> 1min video master</span>
-                                  <span><i class="fa fa-check"></i> Reels and etc</span>
+                                  <span><i class="fa fa-check"></i> Concept by
+                                    request</span>
+                                  <span><i class="fa fa-check"></i> 1min video
+                                    master</span>
+                                  <span><i class="fa fa-check"></i> Reels and
+                                    etc</span>
                                 </div>
                                 <h4>Special Package: </h4>
                                 <div class="ticks-list">
-                                  <span><i class="fa fa-check"></i> Photographer & Videographer</span>
+                                  <span><i class="fa fa-check"></i> Photographer &
+                                    Videographer</span>
                                   <span><i class="fa fa-check"></i> Talent</span>
-                                  <span><i class="fa fa-check"></i> Concept by request</span>
-                                  <span><i class="fa fa-check"></i> Editing photo 60 output</span>
+                                  <span><i class="fa fa-check"></i> Concept by
+                                    request</span>
+                                  <span><i class="fa fa-check"></i> Editing photo 60
+                                    output</span>
                                   <span><i class="fa fa-check"></i> 1min video</span>
                                 </div>
                                 <h4>Catalogue: </h4>
                                 <div class="ticks-list"><span><i class="fa fa-check"></i> Photographer</span>
-                                  <span><i class="fa fa-check"></i> Concept by request</span>
-                                  <span><i class="fa fa-check"></i> Output by request</span>
-                                  <span><i class="fa fa-check"></i> 3 edited files/product</span>
+                                  <span><i class="fa fa-check"></i> Concept by
+                                    request</span>
+                                  <span><i class="fa fa-check"></i> Output by
+                                    request</span>
+                                  <span><i class="fa fa-check"></i> 3 edited
+                                    files/product</span>
                                   <span><i class="fa fa-check"></i> Imin video</span>
                                 </div>
                                 <h4>Brand In Guidelines: </h4>
-                                <div class="ticks-list"><span><i class="fa fa-check"></i> Brand Identity</span>
-                                  <span><i class="fa fa-check"></i> Tone of Voice</span>
-                                  <span><i class="fa fa-check"></i> Logo Clear Space and Size</span>
-                                  <span><i class="fa fa-check"></i> Usage on Different Platforms</span>
-                                  <span><i class="fa fa-check"></i> Brand Applicationss</span>
-                                  <span><i class="fa fa-check"></i> Iconography and Graphic Elements</span>
-                                  <span><i class="fa fa-check"></i> Social Media Guidelines</span>
+                                <div class="ticks-list"><span><i class="fa fa-check"></i> Brand
+                                    Identity</span>
+                                  <span><i class="fa fa-check"></i> Tone of
+                                    Voice</span>
+                                  <span><i class="fa fa-check"></i> Logo Clear Space
+                                    and Size</span>
+                                  <span><i class="fa fa-check"></i> Usage on Different
+                                    Platforms</span>
+                                  <span><i class="fa fa-check"></i> Brand
+                                    Applicationss</span>
+                                  <span><i class="fa fa-check"></i> Iconography and
+                                    Graphic Elements</span>
+                                  <span><i class="fa fa-check"></i> Social Media
+                                    Guidelines</span>
                                 </div>
                               </div>
                             </div>
@@ -589,23 +586,23 @@ https://templatemo.com/tm-568-digimedia
         <div class="col-lg-6 show-up wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
           <div class="blog-post">
             <div class="thumb">
-              <a href="#"><img src="assets/images/blog-post-01.jpg" alt=""></a>
+              <a href="/myads/blog_detail/?id=<?php echo $newBlog["id"]; ?>"><img src="admin/images/<?php echo $newBlog["image"]; ?>" alt=""></a>
             </div>
             <div class="down-content">
-              <span class="category">SEO Analysis</span>
-              <span class="date">03 August 2021</span>
-              <a href="#">
-                <h4>Lorem Ipsum Dolor Sit Amet, Consectetur Adelore
-                  Eiusmod Tempor Incididunt</h4>
+              <span class="category"><?php echo categoryName($newBlog["category_id"]); ?></span>
+              <span class="date"><?php changeDateFormat($newBlog["published_at"]); ?></span>
+              <a href="/myads/blog_detail/?id=<?php echo $newBlog["id"]; ?>">
+                <h4><?php echo $newBlog["title"]; ?></h4>
               </a>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doers itii eiumod deis tempor incididunt
-                ut labore.</p>
+              <p><?php echo $newBlog["excerpt"]; ?></p>
               <div class="row">
                 <div class="col-sm col-12">
-                  <span class="author"><img src="assets/images/author-post.jpg" alt="">By: Andrea Mentuzi</span>
+                  <span class="author"><img src="<?php echo $user["profile_photo"] ?>" alt="" style="max-height: 54px;">
+                    By: <?php echo $user["username"] ?>
+                  </span>
                 </div>
                 <div class="col-sm col-12">
-                  <div class="border-first-button"><a href="#">Discover More</a></div>
+                  <div class="border-first-button"><a href="/myads/blogs>">Discover More</a></div>
                 </div>
               </div>
             </div>
@@ -675,7 +672,8 @@ https://templatemo.com/tm-568-digimedia
               <div class="text">
                 <h1> Partner</h1>
                 <h1> <span>MY ADS</span></h1>
-                <p> Dengan dukungan dari mitra-mitra terpercaya, kami terus berkembang dan memperkuat posisi kami di
+                <p> Dengan dukungan dari mitra-mitra terpercaya, kami terus berkembang dan memperkuat
+                  posisi kami di
                   dunia digital marketing. Bersama-sama, kami mencapai hasil yang luar biasa.</p>
               </div>
             </div>
