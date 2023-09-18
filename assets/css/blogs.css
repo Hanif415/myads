@@ -987,10 +987,10 @@ Banner Style
   /* background-size: cover; */
   padding: 226px 0px 120px 0px;
   position: relative;
-  max-height: 100vh;
+  max-height: 380px;
 }
 
-.main-banner:after {
+/* .main-banner:after {
   content: '';
   background-image: url(../images/slider-left-dec.jpg);
   background-repeat: no-repeat;
@@ -1000,7 +1000,7 @@ Banner Style
   width: 262px;
   height: 625px;
   z-index: 1;
-}
+} */
 
 .main-banner:before {
   content: '';
@@ -1077,6 +1077,20 @@ Banner Style
   color: #63CD97;
 }
 
+
+/* 
+---------------------------------------------
+Blogs Style
+--------------------------------------------- 
+*/
+
+.blogs .blog-item {
+  width: 22rem;
+}
+
+.blog-item img {
+  width: 100%;
+}
 
 /* 
 ---------------------------------------------
@@ -1887,7 +1901,7 @@ Blog
   padding-top: 20px;
 }
 
-.post-item .right-content span.category {
+span.category {
   font-size: 15px;
   color: #fff;
   padding: 8px 12px;
@@ -2405,6 +2419,10 @@ responsive
   form#contact {
     padding: 30px;
   }
+
+  .blogs .blog-item {
+    width: 100%;
+  }
 }
 
 @media (max-width: 573px) {
@@ -2440,4 +2458,8 @@ responsive
   .blog .blog-posts .post-item .date {
     visibility: hidden;
   }
+
+  /* .blogs .blog-item {
+    width: 22rem;
+  } */
 }

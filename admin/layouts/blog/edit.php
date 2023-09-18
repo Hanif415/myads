@@ -225,7 +225,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     ['color', ['color']],
                     ['para', ['ul', 'ol', 'paragraph']],
                     ['height', ['height']],
-                    ['view', ['fullscreen', 'codeview', 'help']],
+                    ['view', ['table', 'fullscreen', 'codeview', 'help']],
                 ],
                 disableDragAndDrop: true,
                 tabDisable: true,

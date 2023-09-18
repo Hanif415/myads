@@ -27,7 +27,7 @@ include('backend/getFewBlog.php');
 
   <!-- Additional CSS Files -->
   <link rel="stylesheet" href="assets/css/fontawesome.css">
-  <link rel="stylesheet" href="assets/css//templatemo-digimedia-v3.css">
+  <link rel="stylesheet" href="assets/css/templatemo-digimedia-v3.css">
   <link rel="stylesheet" href="assets/css/animated.css">
   <link rel="stylesheet" href="assets/css/owl.css">
 </head>
@@ -603,7 +603,7 @@ include('backend/getFewBlog.php');
                   </span>
                 </div>
                 <div class="col-sm col-12">
-                  <div class="border-first-button"><a href="/myads/layouts/blogs>">Discover More</a></div>
+                  <div class="border-first-button"><a href="/myads/layouts/blogs">Discover More</a></div>
                 </div>
               </div>
             </div>
