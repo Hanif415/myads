@@ -11,7 +11,7 @@ $data = mysqli_query($link, "SELECT * FROM banner");
 $total_data = mysqli_num_rows($data);
 $total_page = ceil($total_data / $limit);
 
-$queryAllBanner = "SELECT * FROM banner ORDER BY status DESC limit $first_page, $limit";
+$queryAllBanner = "SELECT * FROM banner ORDER BY updated_at DESC limit $first_page, $limit";
 $banners = "";
 // FETCHING DATA FROM DATABASE
 $resultAllBanner = mysqli_query($link, $queryAllBanner);
