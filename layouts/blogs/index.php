@@ -138,21 +138,29 @@ include('../../backend/getNewBlog.php');
             </div>
             <nav>
                 <ul class="pagination justify-content-center">
-                    <li class="page-item">
-                        <a class="page-link" <?php if ($halaman > 1) {
-                                                    echo "href='?halaman=$previous'";
+                    <li class="page-item <?php if ($page == 1) {
+                                                echo "disabled";
+                                            } ?>">
+                        <a class="page-link" <?php if ($page > 1) {
+                                                    echo "href='?page=$previous'";
                                                 } ?>>Previous</a>
                     </li>
                     <?php
-                    for ($x = 1; $x <= $total_halaman; $x++) {
+                    for ($x = 1; $x <= $total_page; $x++) {
                     ?>
-                        <li class="page-item"><a class="page-link" href="?halaman=<?php echo $x ?>"><?php echo $x; ?></a></li>
+                        <li class="page-item <?php if ($page == $x) {
+                                                    echo "active";
+                                                } ?>">
+                            <a class="page-link" href="?page=<?php echo $x ?>"><?php echo $x; ?></a>
+                        </li>
                     <?php
                     }
                     ?>
-                    <li class="page-item">
-                        <a class="page-link" <?php if ($halaman < $total_halaman) {
-                                                    echo "href='?halaman=$next'";
+                    <li class="page-item <?php if ($page == $total_page) {
+                                                echo "disabled";
+                                            } ?>">
+                        <a class="page-link" <?php if ($page < $total_page) {
+                                                    echo "href='?page=$next'";
                                                 } ?>>Next</a>
                     </li>
                 </ul>
