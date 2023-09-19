@@ -118,7 +118,7 @@ include('../../backend/banner/add.php');
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/myads/admin/layouts/blog/blog.php">
+                            <a class="nav-link" aria-current="page" href="/myads/admin/layouts/blog/blog.php">
                                 <span data-feather="layout" class="align-text-bottom"></span>
                                 Blogs
                             </a>
@@ -127,6 +127,12 @@ include('../../backend/banner/add.php');
                             <a class="nav-link" aria-current="page" href="/myads/admin/layouts/categories/categories.php">
                                 <span data-feather="tag" class="align-text-bottom"></span>
                                 Categories
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/myads/admin/layouts/banner/banner.php">
+                                <span data-feather="image" class="align-text-bottom"></span>
+                                Banner
                             </a>
                         </li>
                     </ul>

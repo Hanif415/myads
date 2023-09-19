@@ -135,6 +135,12 @@ include('../../backend/blog/show.php');
                                 Categories
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/myads/admin/layouts/banner/banner.php">
+                                <span data-feather="image" class="align-text-bottom"></span>
+                                Banner
+                            </a>
+                        </li>
                     </ul>
 
                 </div>
