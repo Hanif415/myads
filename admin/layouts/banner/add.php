@@ -154,12 +154,13 @@ include('../../backend/banner/add.php');
                 <form method="post" action="add.php" enctype="multipart/form-data" class="mb-5">
                     <div class="mb-3">
                         <label for="image" class="form-label">Upload Banner</label>
-                        <img class="img-preview img-fluid mb-1 d-block" width="150px">
-                        <input type="file" name="image" id="image" class="form-control <?php echo (!empty($image_err)) ? 'is-invalid' : ''; ?>" onchange="previewImage(event)">
+                        <img class="img-preview img-fluid mb-1 d-block" width="350px">
+                        <input type="file" name="image" id="image" aria-describedby="imageHelp" class="form-control <?php echo (!empty($image_err)) ? 'is-invalid' : ''; ?>" onchange="previewImage(event)">
+                        <small id="imageHelp" class="form-text text-muted">Pastikan nama file tidak mengandung spasi.</small>
                         <span class="invalid-feedback"><?php echo $image_err; ?></span>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" name="submit">Publish</button>
+                    <button type="submit" class="btn btn-primary" name="submit">Upload</button>
                 </form>
             </main>
         </div>
@@ -186,6 +187,20 @@ include('../../backend/banner/add.php');
 
     <!-- Customize js -->
     <script src="../../js/dashboard.js"></script>
+
+    <script>
+        function previewImage(event) {
+            var input = event.target;
+            var image = document.querySelector('.img-preview');
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    image.src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 </body>
 
 </html>

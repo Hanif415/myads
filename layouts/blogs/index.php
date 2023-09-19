@@ -146,6 +146,8 @@ include('../../backend/getBanner.php');
                 }
                 ?>
             </div>
+
+            <!-- Pagination -->
             <nav>
                 <ul class="pagination justify-content-center">
                     <li class="page-item <?php if ($page == 1) {
@@ -175,6 +177,7 @@ include('../../backend/getBanner.php');
                     </li>
                 </ul>
             </nav>
+            <!-- End Pagination -->
         </div>
     </div>
     <footer>

@@ -138,7 +138,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/myads/admin/layouts/banner/banner.php">
+                            <a class="nav-link" aria-current="page" href="/myads/admin/layouts/banner/banner.php">
                                 <span data-feather="image" class="align-text-bottom"></span>
                                 Banner
                             </a>

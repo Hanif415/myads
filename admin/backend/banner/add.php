@@ -68,6 +68,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check input errors before inserting in database
     if (empty($image_err) && $uploadOk == 1) {
 
+        // set all status to 0(inactive) first
+        mysqli_query($link, "UPDATE banner SET status = 0");
         // Prepare an insert statement
         $sql = "INSERT INTO banner (name, status) VALUES (?, ?)";
 
@@ -77,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Set parameters
             $param_image = $image;
-            $param_status = 0;
+            $param_status = 1;
 
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
