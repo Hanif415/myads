@@ -5,6 +5,7 @@ require_once "../../utils/changeDateFormat.php";
 
 include('../../backend/getAllBlog.php');
 include('../../backend/getNewBlog.php');
+include('../../backend/getBanner.php');
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +33,15 @@ include('../../backend/getNewBlog.php');
     <link rel="stylesheet" href="../../assets/css/blogs.css">
     <link rel="stylesheet" href="../../assets/css/animated.css">
     <link rel="stylesheet" href="../../assets/css/owl.css">
+
+    <style>
+        .main-banner:before {
+            content: '';
+            <?php
+            echo "background-image: url(../../assets/images/banner/$banner[name])";
+            ?>
+        }
+    </style>
 </head>
 
 <body>
@@ -77,7 +87,7 @@ include('../../backend/getNewBlog.php');
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <h2> Blog<span> MY ADS </span> </h2>
-                                        <p>Perluas wawasan seputar dunia digital dan teknologi melalui blog Sasana Digital.</p>
+                                        <p>Perluas wawasan tentang dunia digital dan teknologi dengan mengikuti perkembangan terbaru di blog MY ADS.</p>
                                     </div>
                                 </div>
                             </div>

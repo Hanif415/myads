@@ -5,6 +5,7 @@ require_once "utils/changeDateFormat.php";
 
 include('backend/getNewBlog.php');
 include('backend/getFewBlog.php');
+include('backend/getBanner.php');
 ?>
 
 <!DOCTYPE html>
@@ -30,10 +31,18 @@ include('backend/getFewBlog.php');
   <link rel="stylesheet" href="assets/css/templatemo-digimedia-v3.css">
   <link rel="stylesheet" href="assets/css/animated.css">
   <link rel="stylesheet" href="assets/css/owl.css">
+
+  <style>
+    .main-banner:before {
+      content: '';
+      <?php
+      echo "background-image: url(assets/images/banner/$banner[name])";
+      ?>
+    }
+  </style>
 </head>
 
 <body>
-
   <!-- ***** Preloader Start ***** -->
   <div id="js-preloader" class="js-preloader">
     <div class="preloader-inner">

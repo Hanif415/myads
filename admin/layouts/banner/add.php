@@ -3,13 +3,16 @@
 session_start();
 
 // Include config file
-require_once "backend/config.php";
+require_once "../../backend/config.php";
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: layouts/login.php");
+    header("location: login.php");
     exit;
 }
+
+include('../../backend/banner/getAllBanner.php');
+include('../../backend/banner/add.php');
 ?>
 
 <!doctype html>
@@ -29,6 +32,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <!-- Bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
+    <!-- Data tables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+
+    <!-- Custom sty les for this template -->
+    <link href="../../css/dashboard.css" rel="stylesheet">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -82,8 +90,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         }
     </style>
 
-    <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
 </head>
 
 <body>
@@ -95,7 +101,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         </button>
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
-                <a class="nav-link px-3" href="backend/authentication/logout.php">Sign out</a>
+                <a class="nav-link px-3" href="../../backend/authentication/logout.php">Sign out</a>
             </div>
         </div>
     </header>
@@ -106,13 +112,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <div class="position-sticky pt-3 sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">
+                            <a class="nav-link" aria-current="page" href="/myads/admin/">
                                 <span data-feather="home" class="align-text-bottom"></span>
                                 Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/myads/admin/layouts/blog/blog.php">
+                            <a class="nav-link active" aria-current="page" href="/myads/admin/layouts/blog/blog.php">
                                 <span data-feather="layout" class="align-text-bottom"></span>
                                 Blogs
                             </a>
@@ -123,32 +129,57 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                 Categories
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/myads/admin/layouts/banner/banner.php">
-                                <span data-feather="image" class="align-text-bottom"></span>
-                                Banner
-                            </a>
-                        </li>
                     </ul>
+
                 </div>
             </nav>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Welcome</h1>
+                    <h1 class="h2">Add Banner</h1>
                 </div>
+                <?php
+
+                if (isset($_SESSION['blog_posted_message'])) {
+                    echo '<div class="alert alert-success">' . $_SESSION['blog_posted_message'] . '</div>';
+                    unset($_SESSION['blog_posted_message']);
+                }
+                ?>
+                <form method="post" action="add.php" enctype="multipart/form-data" class="mb-5">
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Upload Banner</label>
+                        <img class="img-preview img-fluid mb-1 d-block" width="150px">
+                        <input type="file" name="image" id="image" class="form-control <?php echo (!empty($image_err)) ? 'is-invalid' : ''; ?>" onchange="previewImage(event)">
+                        <span class="invalid-feedback"><?php echo $image_err; ?></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" name="submit">Publish</button>
+                </form>
             </main>
         </div>
     </div>
 
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+    <!-- Data tables -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            let table = new DataTable('#myTable');
+            $('#myTable').DataTable();
+        });
+    </script>
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 
+    <!-- Feather Icon -->
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
     </script>
 
-    <script src="js/dashboard.js"></script>
+    <!-- Customize js -->
+    <script src="../../js/dashboard.js"></script>
 </body>
 
 </html>
