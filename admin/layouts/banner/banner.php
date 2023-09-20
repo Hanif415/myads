@@ -173,7 +173,7 @@ include('../../backend/banner/getAllBanner.php');
                                                 <a href="../../backend/banner/changeStatus.php?id=<?php echo $banner["id"] ?>" class="btn btn-warning col-9 me-4">Change Banner</a>
                                             <?php } ?>
 
-                                            <a href="../../backend/banner/delete.php?id=<?php echo $banner["id"] ?>" class="btn btn-danger col-2" onclick="confirm('Apa kmau yakin ingin menghapus banner ini?')"><i class="bi bi-trash"></i></a>
+                                            <a href="../../backend/banner/delete.php?id=<?php echo $banner["id"] ?>" class="btn btn-danger col-2" onclick="return confirm('Apa kmau yakin ingin menghapus banner ini?')"><i class="bi bi-trash"></i></a>
                                         </div>
 
                                     </div>

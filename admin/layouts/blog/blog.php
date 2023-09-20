@@ -187,7 +187,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                         <td>
                                             <a href="/myads/admin/layouts/blog/show.php?id=<?php echo $row["id"] ?>" class="btn badge bg-primary"><i class="bi bi-eye"></i></a>
                                             <a href="/myads/admin/layouts/blog/edit.php?id=<?php echo $row["id"] ?>" class="btn badge bg-warning"><i class="bi bi-pencil-square"></i></a>
-                                            <a href="../../backend/blog/delete.php?id=<?php echo $row["id"] ?>" class="btn badge bg-danger" onclick="confirm('Apakah anda ingin menghapus blog ini?')"><i class="bi bi-trash"></i></a>
+                                            <a href="../../backend/blog/delete.php?id=<?php echo $row["id"] ?>" class="btn badge bg-danger" onclick="return confirm('Apakah anda ingin menghapus blog ini?')"><i class="bi bi-trash"></i></a>
                                         </td>
                                     </tr>
                             <?php

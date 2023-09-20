@@ -187,7 +187,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                         <td>
 
                                             <a href="/myads/admin/layouts/users/edit.php?id=<?php echo $row["id"] ?>" class="btn badge bg-warning"><i class="bi bi-pencil-square"></i></a>
-                                            <a href="../../backend/users/delete.php?id=<?php echo $row["id"] ?>" class="btn badge bg-danger" onclick="confirm('Apakah anda ingin menghapus kategori ini?')"><i class="bi bi-trash"></i></a>
+                                            <a onclick="return confirm('Apakah anda ingin menghapus kategori ini?')" href="/myads/admin/backend/user/delete.php?id=<?php echo $row["id"] ?>" class="btn badge bg-danger"><i class="bi bi-trash"></i></a>
                                         </td>
                                     </tr>
                             <?php
