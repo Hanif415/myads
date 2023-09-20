@@ -185,6 +185,7 @@ include('../../backend/user/create.php');
                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
                             <label class="form-label" for="image">photo</label>
+                            <img class="img-preview img-fluid mb-1 d-block" width="350px">
                             <input type="file" name="image" id="image" aria-describedby="imageHelp" class="form-control <?php echo (!empty($image_err)) ? 'is-invalid' : ''; ?>" onchange="previewImage(event)">
                             <span class="invalid-feedback"><?php echo $image_err; ?></span>
                         </div>
@@ -232,6 +233,20 @@ include('../../backend/user/create.php');
 
     <!-- Customize js -->
     <script src="../../js/dashboard.js"></script>
+
+    <script>
+        function previewImage(event) {
+            var input = event.target;
+            var image = document.querySelector('.img-preview');
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    image.src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 
 </body>
 

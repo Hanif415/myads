@@ -593,37 +593,59 @@ include('backend/getBanner.php');
             <div class="line-dec"></div>
           </div>
         </div>
-        <div class="col-lg-6 show-up wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
-          <div class="blog-post">
-            <div class="thumb">
-              <a href="/myads/layouts/blogs/blog_detail/?id=<?php echo $newBlog["id"]; ?>"><img src="admin/images/<?php echo $newBlog["image"]; ?>" alt=""></a>
-            </div>
-            <div class="down-content">
-              <span class="category"><?php echo categoryName($newBlog["category_id"]); ?></span>
-              <span class="date"><?php changeDateFormat($newBlog["published_at"]); ?></span>
-              <a href="/myads/blogs/blog_detail/?id=<?php echo $newBlog["id"]; ?>">
-                <h4><?php echo $newBlog["title"]; ?></h4>
-              </a>
-              <p><?php echo $newBlog["excerpt"]; ?></p>
-              <div class="row">
-                <div class="col-sm col-12">
-                  <span class="author"><img src="<?php echo $user["profile_photo"] ?>" alt="" style="max-height: 54px;">
-                    By: <?php echo $user["name"] ?>
-                  </span>
-                </div>
-                <div class="col-sm col-12">
-                  <div class="border-first-button"><a href="/myads/layouts/blogs">Discover More</a></div>
+
+        <?php
+        $query = "SELECT * FROM `blogs` ORDER BY published_at DESC LIMIT 1";
+        $newBlog = "";
+        // FETCHING DATA FROM DATABASE
+        $result = mysqli_query($link, $query);
+        if (mysqli_num_rows($result) > 0) {
+          $newBlog = mysqli_fetch_assoc($result);
+          $user = getUSer($newBlog["user_id"]);
+        ?>
+          <div class="col-lg-6 show-up wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
+            <div class="blog-post">
+              <div class="thumb">
+                <a href="/myads/layouts/blogs/blog_detail/?id=<?php echo $newBlog["id"]; ?>"><img src="admin/images/<?php echo $newBlog["image"]; ?>" alt=""></a>
+              </div>
+              <div class="down-content">
+                <span class="category"><?php echo categoryName($newBlog["category_id"]); ?></span>
+                <span class="date"><?php changeDateFormat($newBlog["published_at"]); ?></span>
+                <a href="/myads/blogs/blog_detail/?id=<?php echo $newBlog["id"]; ?>">
+                  <h4><?php echo $newBlog["title"]; ?></h4>
+                </a>
+                <p><?php echo $newBlog["excerpt"]; ?></p>
+                <div class="row">
+                  <div class="col-sm col-12">
+                    <span class="author"><img src="admin/images/profile/<?php echo $user["profile_photo"] ?>" alt="" style="max-height: 54px;">
+                      By: <?php echo $user["name"] ?>
+                    </span>
+                  </div>
+                  <div class="col-sm col-12">
+                    <div class="border-first-button"><a href="/myads/layouts/blogs">Discover More</a></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
-          <div class="blog-posts">
-            <div class="row">
-              <?php
-              if (mysqli_num_rows($resultFewBlogs) > 0) {
-                $skipCount = 1;
+        <?php  } else { ?>
+          <div class="col-lg-12 show-up wow fadeInUp text-center" data-wow-duration="1s" data-wow-delay="0.3s">
+            <h1>Belum Ada Postingan Hari ini.</h1>
+          </div>
+        <?php } ?>
+
+        <?php
+        $query = "SELECT * FROM `blogs` ORDER BY published_at DESC LIMIT 4";
+        $blogs = "";
+        // FETCHING DATA FROM DATABASE
+        $resultFewBlogs = mysqli_query($link, $query);
+        if (mysqli_num_rows($resultFewBlogs) > 0) {
+          $skipCount = 1; ?>
+          <div class="col-lg-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
+            <div class="blog-posts">
+              <div class="row">
+                <?php
+
                 while ($blogs = mysqli_fetch_assoc($resultFewBlogs)) {
                   // skip 1 item
                   if ($skipCount == 1) {
@@ -631,7 +653,7 @@ include('backend/getBanner.php');
                     $skipCount++;
                     continue;
                   }
-              ?>
+                ?>
                   <div class="col-lg-12 mb-4">
                     <div class="post-item">
                       <div class="thumb">
@@ -647,12 +669,12 @@ include('backend/getBanner.php');
                       </div>
                     </div>
                   </div>
-              <?php
-                }
-              } ?>
+                <?php
+                } ?>
+              </div>
             </div>
           </div>
-        </div>
+        <?php } ?>
       </div>
     </div>
   </div>

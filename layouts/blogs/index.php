@@ -111,73 +111,85 @@ include('../../backend/getBanner.php');
                     </form>
                 </div>
             </div>
-            <!-- <div class="card mb-3">
-                <img src="../../admin/images/<?php echo $newBlog["image"] ?>" alt="{{ $posts[0]->category->name }}" class="img-fluid">
-                <div class="card-body text-center">
-                    <h3 class="card-title"><a href="" class="text-decoration-none text-dark"><?php echo $newBlog["title"] ?></a></h3>
-                    <p>
-                        <small>
-                            By. <?php echo $user["name"] ?>
-                        </small>
-                    </p>
-                    <p class="card-text mb-3"><?php echo $newBlog["excerpt"] ?></p>
 
-                    <a href="" class="text-decoration-none btn btn-success">Read more</a>
-                </div>
-            </div> -->
-            <div class="row">
-                <?php
-                if (mysqli_num_rows($resultAllBlog) > 0) {
+            <?php
+            $limit = 9;
+            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+            $first_page = ($page > 1) ? ($page * $limit) - $limit : 0;
+
+            $previous = $page - 1;
+            $next = $page + 1;
+
+            $data = mysqli_query($link, "SELECT * FROM blogs");
+            $total_data = mysqli_num_rows($data);
+            $total_page = ceil($total_data / $limit);
+
+            $queryAllBlog = "SELECT * FROM blogs ORDER BY published_at DESC limit $first_page, $limit";
+            $blogs = "";
+            // FETCHING DATA FROM DATABASE
+            $resultAllBlog = mysqli_query($link, $queryAllBlog);
+            if (mysqli_num_rows($resultAllBlog) > 0) { ?>
+
+                <div class="row">
+
+                    <?php
                     while ($blog = mysqli_fetch_assoc($resultAllBlog)) {
-                ?>
+                    ?>
                         <div class="item col-lg-4 col-md-6 mb-5 col-12">
                             <div class="blog-item card">
                                 <img class=" card-img-top" src="../../admin/images/<?php echo $blog["image"] ?>" alt="Card image cap">
                                 <div class="card-body">
-                                    <span class="category mt-3"><?php echo categoryName($newBlog["category_id"]); ?></span>
+                                    <span class="category mt-3"><?php echo categoryName($blog["category_id"]); ?></span>
                                     <h5 class="card-title mt-3"><?php echo $blog["title"] ?></h5>
                                     <p><?php echo $blog["excerpt"]; ?></p>
                                     <a href="#" class="btn btn-success w-100 mt-3">Read More <i class="bi bi-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
-                <?php
+                    <?php
                     }
-                }
-                ?>
-            </div>
+                    ?>
+                </div>
 
-            <!-- Pagination -->
-            <nav>
-                <ul class="pagination justify-content-center">
-                    <li class="page-item <?php if ($page == 1) {
-                                                echo "disabled";
-                                            } ?>">
-                        <a class="page-link" <?php if ($page > 1) {
-                                                    echo "href='?page=$previous'";
-                                                } ?>>Previous</a>
-                    </li>
-                    <?php
-                    for ($x = 1; $x <= $total_page; $x++) {
-                    ?>
-                        <li class="page-item <?php if ($page == $x) {
-                                                    echo "active";
+                <!-- Pagination -->
+                <nav>
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item <?php if ($page == 1) {
+                                                    echo "disabled";
                                                 } ?>">
-                            <a class="page-link" href="?page=<?php echo $x ?>"><?php echo $x; ?></a>
+                            <a class="page-link" <?php if ($page > 1) {
+                                                        echo "href='?page=$previous'";
+                                                    } ?>>Previous</a>
                         </li>
-                    <?php
-                    }
-                    ?>
-                    <li class="page-item <?php if ($page == $total_page) {
-                                                echo "disabled";
-                                            } ?>">
-                        <a class="page-link" <?php if ($page < $total_page) {
-                                                    echo "href='?page=$next'";
-                                                } ?>>Next</a>
-                    </li>
-                </ul>
-            </nav>
-            <!-- End Pagination -->
+                        <?php
+                        for ($x = 1; $x <= $total_page; $x++) {
+                        ?>
+                            <li class="page-item <?php if ($page == $x) {
+                                                        echo "active";
+                                                    } ?>">
+                                <a class="page-link" href="?page=<?php echo $x ?>"><?php echo $x; ?></a>
+                            </li>
+                        <?php
+                        }
+                        ?>
+                        <li class="page-item <?php if ($page == $total_page) {
+                                                    echo "disabled";
+                                                } ?>">
+                            <a class="page-link" <?php if ($page < $total_page) {
+                                                        echo "href='?page=$next'";
+                                                    } ?>>Next</a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End Pagination -->
+
+            <?php
+            } else {
+            ?>
+                <h1 class="text-center">Belum ada postingan untuk hari ini.</h1>
+            <?php
+            }
+            ?>
         </div>
     </div>
     <footer>

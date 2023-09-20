@@ -11,6 +11,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
+require_once "../../utils/createSlug.php";
+include('../../backend/user/edit.php');
+
 ?>
 
 <!doctype html>
@@ -22,7 +25,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.108.0">
-    <title>Dashboard Template · Bootstrap v5.3</title>
+    <title>Dashboard MY ADS</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -30,11 +33,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <!-- Bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-    <!-- Data tables -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+    <!-- include summernote css -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/summernote/summernote-lite.css">
 
     <!-- Custom sty les for this template -->
     <link href="../../css/dashboard.css" rel="stylesheet">
+
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -86,8 +91,12 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
         }
-    </style>
 
+        /* Customize summernote background fullscreen bcs it was transparent */
+        .note-editor.note-frame.fullscreen {
+            background-color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -97,6 +106,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
                 <a class="nav-link px-3" href="../../backend/authentication/logout.php">Sign out</a>
@@ -146,78 +156,84 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Users</h1>
+                    <h1 class="h2">Edit User</h1>
                 </div>
-                <a href="/myads/admin/layouts/users/create.php" class="btn btn-primary mb-3">Create a new
-                    users</a>
 
+                <!-- Error Handling -->
                 <?php
-                if (isset($_SESSION['blog_posted_message'])) {
-                    echo '<div class="alert alert-success">' . $_SESSION['blog_posted_message'] . '</div>';
-                    unset($_SESSION['blog_posted_message']);
+                if (!empty($exec_err)) {
+                    echo '<div class="alert alert-danger">' . $exec_err . '</div>';
                 }
                 ?>
+                <!-- End Error Handling -->
 
-                <div class="table-responsive mb-5 col-sm-10">
-                    <table id="myTable" class="table table-striped display" style="font-size: larger;">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Username</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody class=" align-middle fs-5">
-                            <?php  // SQL QUERY
+                <form class="mx-1 mx-md-4" action="edit.php" method="post" enctype="multipart/form-data">
+                    <input type="text" hidden value="<?php echo $user_id ?>" name="id">
+                    <input type="text" name="profile_photo" hidden value="<?php echo $profile_photo; ?>">
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <label class="form-label" for="name">Your Name</label>
+                            <input type="text" id="name" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>" name="name" />
+                            <span class="invalid-feedback"><?php echo $name_err; ?></span>
+                        </div>
+                    </div>
 
-                            $query = "SELECT * FROM `users` ORDER BY name DESC;";
-                            // FETCHING DATA FROM DATABASE
-                            $result = mysqli_query($link, $query);
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <label class="form-label" for="username">Username</label>
+                            <input type="text" id="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>" name="username" />
+                            <span class="invalid-feedback"><?php echo $username_err; ?></span>
+                        </div>
+                    </div>
 
-                            if (mysqli_num_rows($result) > 0) {
-                                // OUTPUT DATA OF EACH ROW
-                                $i = 1;
-                                while ($row = mysqli_fetch_assoc($result)) {
-                            ?>
-                                    <tr>
-                                        <td><?php echo $i; ?></td>
-                                        <td><?php echo $row["name"] ?></td>
-                                        <td><?php echo $row["username"] ?></td>
-                                        <td>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <label class="form-label" for="image">photo</label>
+                            <img class="img-preview img-fluid mb-1 d-block" width="350px" src="../../images/profile/<?php echo $profile_photo ?>">
+                            <input type="file" name="image" id="image" aria-describedby="imageHelp" class="form-control <?php echo (!empty($image_err)) ? 'is-invalid' : ''; ?>" onchange="previewImage(event)">
+                            <span class="invalid-feedback"><?php echo $image_err; ?></span>
+                        </div>
+                    </div>
 
-                                            <a href="/myads/admin/layouts/users/edit.php?id=<?php echo $row["id"] ?>" class="btn badge bg-warning"><i class="bi bi-pencil-square"></i></a>
-                                            <a href="../../backend/users/delete.php?id=<?php echo $row["id"] ?>" class="btn badge bg-danger" onclick="confirm('Apakah anda ingin menghapus kategori ini?')"><i class="bi bi-trash"></i></a>
-                                        </td>
-                                    </tr>
-                            <?php
-                                    $i++;
-                                }
-                            } else {
-                                echo "0 results";
-                            }
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <label class="form-label" for="password">Password</label>
+                            <input type="password" id="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>" name="password" aria-describedby="passwordHelp" />
+                            <small id="passwordHelp" class="form-text text-muted">Kosongkan bila tidak ingin mengganti password</small>
+                            <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                        </div>
+                    </div>
 
-                            $link->close();
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <label class="form-label" for="confirm_password">Repeat your
+                                password</label>
+                            <input type="password" id="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" name="confirm_password" value="<?php echo $confirm_password; ?>" />
+                            <small id="passwordHelp" class="form-text text-muted">Kosongkan bila tidak ingin mengganti password</small>
+                            <span class=" invalid-feedback">
+                                <?php echo $confirm_password_err; ?></span>
+
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                    </div>
+                    <p>Already have an account? <a href="login.php">Login here</a>.</p>
+                </form>
             </main>
         </div>
     </div>
 
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- summernote js -->
+    <script src="../../../assets/summernote/summernote-lite.js"></script>
 
-    <!-- Data tables -->
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
-    <script>
-        $(document).ready(function() {
-            let table = new DataTable('#myTable');
-            $('#myTable').DataTable();
-        });
-    </script>
-    <!-- Bootstrap -->
+    <!-- Bootstrap script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 
@@ -227,6 +243,21 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
     <!-- Customize js -->
     <script src="../../js/dashboard.js"></script>
+
+    <script>
+        function previewImage(event) {
+            var input = event.target;
+            var image = document.querySelector('.img-preview');
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    image.src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
 </body>
 
 </html>
