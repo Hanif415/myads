@@ -1853,7 +1853,7 @@ Blog
 
 .blog-post .down-content .border-first-button {
   display: inline-block;
-  /* float: right; */
+  float: right;
 }
 
 .blog-posts {
@@ -1866,7 +1866,7 @@ Blog
 
 .post-item .thumb {
   display: inline-block;
-  /* float: left; */
+  float: left;
   margin-right: 30px;
 }
 
@@ -2382,7 +2382,7 @@ responsive
   } */
 
   .blog-posts {
-    visibility: hidden;
+    display: none;
   }
 
   .post-item {
@@ -2404,6 +2404,15 @@ responsive
   form#contact {
     padding: 30px;
   }
+
+  .blog-post .down-content span.date {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  .blog-post .down-content span.category {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 573px) {
@@ -2423,6 +2432,11 @@ responsive
     justify-content: center;
     margin-top: 30px;
   }
+
+  /* .post-item .right-content span.date {
+    text-align: left;
+    float: left;
+  } */
 }
 
 @media (max-width: 449px) {

@@ -611,6 +611,14 @@ include('backend/getBanner.php');
               <div class="down-content">
                 <span class="category"><?php echo categoryName($newBlog["category_id"]); ?></span>
                 <span class="date"><?php changeDateFormat($newBlog["published_at"]); ?></span>
+                <!-- <div class="row">
+                  <div class="col-sm-7 col-12">
+
+                  </div>
+                  <div class="col-sm-5 col-12 mt-sm-0 mt-3">
+                  </div>
+                </div> -->
+
                 <a href="/myads/blogs/blog_detail/?id=<?php echo $newBlog["id"]; ?>">
                   <h4><?php echo $newBlog["title"]; ?></h4>
                 </a>
@@ -654,7 +662,7 @@ include('backend/getBanner.php');
                     continue;
                   }
                 ?>
-                  <div class="col-lg-12 mb-4">
+                  <div class="col-lg-12 mb-lg-4 mb-1">
                     <div class="post-item">
                       <div class="thumb">
                         <a href="/myads/layouts/blogs/blog_detail/?id=<?php echo $newBlog["id"]; ?>"><img src="admin/images/<?php echo $blogs["image"]; ?>" alt=""></a>
