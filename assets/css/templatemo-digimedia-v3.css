@@ -1853,15 +1853,11 @@ Blog
 
 .blog-post .down-content .border-first-button {
   display: inline-block;
-  float: right;
+  /* float: right; */
 }
 
 .blog-posts {
   margin-left: 30px;
-}
-
-.post-item {
-  /* margin-bottom: 62px; */
 }
 
 .last-post-item {
@@ -1870,7 +1866,7 @@ Blog
 
 .post-item .thumb {
   display: inline-block;
-  float: left;
+  /* float: left; */
   margin-right: 30px;
 }
 
