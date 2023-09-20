@@ -3,13 +3,14 @@
 session_start();
 
 // Include config file
-require_once "backend/config.php";
+require_once "../../backend/config.php";
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: layouts/login.php");
+    header("location: login.php");
     exit;
 }
+
 ?>
 
 <!doctype html>
@@ -29,6 +30,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <!-- Bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
+    <!-- Data tables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+
+    <!-- Custom sty les for this template -->
+    <link href="../../css/dashboard.css" rel="stylesheet">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -82,8 +88,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         }
     </style>
 
-    <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
 </head>
 
 <body>
@@ -95,7 +99,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         </button>
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
-                <a class="nav-link px-3" href="backend/authentication/logout.php">Sign out</a>
+                <a class="nav-link px-3" href="../../backend/authentication/logout.php">Sign out</a>
             </div>
         </div>
     </header>
@@ -106,7 +110,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <div class="position-sticky pt-3 sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">
+                            <a class="nav-link" aria-current="page" href="/myads/admin/">
                                 <span data-feather="home" class="align-text-bottom"></span>
                                 Dashboard
                             </a>
@@ -130,31 +134,103 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/myads/admin/layouts/users/users.php">
+                            <a class="nav-link active" aria-current="page" href="/myads/admin/layouts/users/users.php">
                                 <span data-feather="user" class="align-text-bottom"></span>
                                 Users
                             </a>
                         </li>
                     </ul>
+
                 </div>
             </nav>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Welcome</h1>
+                    <h1 class="h2">Users</h1>
+                </div>
+                <a href="/myads/admin/layouts/users/create.php" class="btn btn-primary mb-3">Create a new
+                    users</a>
+
+                <?php
+                if (isset($_SESSION['blog_posted_message'])) {
+                    echo '<div class="alert alert-success">' . $_SESSION['blog_posted_message'] . '</div>';
+                    unset($_SESSION['blog_posted_message']);
+                }
+                ?>
+
+                <div class="table-responsive mb-5 col-sm-10">
+                    <table id="myTable" class="table table-striped display" style="font-size: larger;">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Profile Photo</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class=" align-middle fs-5">
+                            <?php  // SQL QUERY
+
+                            $query = "SELECT * FROM `users` ORDER BY name DESC;";
+                            // FETCHING DATA FROM DATABASE
+                            $result = mysqli_query($link, $query);
+
+                            if (mysqli_num_rows($result) > 0) {
+                                // OUTPUT DATA OF EACH ROW
+                                $i = 1;
+                                while ($row = mysqli_fetch_assoc($result)) {
+                            ?>
+                                    <tr>
+                                        <td><?php echo $i; ?></td>
+                                        <td>
+                                            <img src="../../images/profile/<?php echo $row["profile_photo"] ?>" alt="<?php echo $row["name"] ?>" width="100px" height="130px">
+                                        </td>
+                                        <td><?php echo $row["name"] ?></td>
+                                        <td><?php echo $row["username"] ?></td>
+                                        <td>
+
+                                            <a href="/myads/admin/layouts/users/edit.php?id=<?php echo $row["id"] ?>" class="btn badge bg-warning"><i class="bi bi-pencil-square"></i></a>
+                                            <a href="../../backend/users/delete.php?id=<?php echo $row["id"] ?>" class="btn badge bg-danger" onclick="confirm('Apakah anda ingin menghapus kategori ini?')"><i class="bi bi-trash"></i></a>
+                                        </td>
+                                    </tr>
+                            <?php
+                                    $i++;
+                                }
+                            } else {
+                                echo "0 results";
+                            }
+
+                            $link->close();
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </main>
         </div>
     </div>
 
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+    <!-- Data tables -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            let table = new DataTable('#myTable');
+            $('#myTable').DataTable();
+        });
+    </script>
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 
+    <!-- Feather Icon -->
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
     </script>
 
-    <script src="js/dashboard.js"></script>
+    <!-- Customize js -->
+    <script src="../../js/dashboard.js"></script>
 </body>
 
 </html>

@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty(trim($_FILES["image"]["name"]))) {
         $image_err = "gambar tidak boleh kosong";
     } else {
-        $image = trim($_FILES["image"]["name"]);;
+        $image = trim($_FILES["image"]["name"]);
     }
 
     // validasi image
