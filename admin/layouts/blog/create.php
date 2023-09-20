@@ -143,6 +143,12 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                 Banner
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/myads/admin/layouts/users/users.php">
+                                <span data-feather="user" class="align-text-bottom"></span>
+                                Users
+                            </a>
+                        </li>
                     </ul>
 
                 </div>
