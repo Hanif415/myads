@@ -150,7 +150,7 @@ include('../../backend/user/create.php');
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">My Blogs</h1>
+                    <h1 class="h2">User</h1>
                 </div>
 
                 <!-- Error Handling -->
@@ -211,10 +211,9 @@ include('../../backend/user/create.php');
                         </div>
                     </div>
 
-                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                        <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                    <div class="d-flex mx-4 mb-3 mb-lg-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Create User</button>
                     </div>
-                    <p>Already have an account? <a href="login.php">Login here</a>.</p>
                 </form>
             </main>
         </div>

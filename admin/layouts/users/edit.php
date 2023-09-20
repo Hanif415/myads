@@ -221,10 +221,9 @@ include('../../backend/user/edit.php');
                         </div>
                     </div>
 
-                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                        <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                    <div class="d-flex mx-4 mb-3 mb-lg-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Update</button>
                     </div>
-                    <p>Already have an account? <a href="login.php">Login here</a>.</p>
                 </form>
             </main>
         </div>
