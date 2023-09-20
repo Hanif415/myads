@@ -174,7 +174,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         <span class="invalid-feedback"><?php echo $name_err; ?></span>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" name="submit">Create</button>
+                    <button type="submit" class="btn btn-primary" name="submit">Update</button>
                 </form>
             </main>
         </div>

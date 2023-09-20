@@ -661,7 +661,7 @@ include('backend/getBanner.php');
                       </div>
                       <div class="right-content">
                         <span class="category"><?php echo categoryName($blogs["category_id"]) ?></span>
-                        <span class="date"><?php changeDateFormat($blogs["published_at"]); ?></span>
+                        <!-- <span class="date"><?php changeDateFormat($blogs["published_at"]); ?></span> -->
                         <a href="/myads/layouts/blogs/blog_detail/?id=<?php echo $newBlog["id"]; ?>">
                           <h4><?php echo $blogs["title"]; ?></h4>
                         </a>

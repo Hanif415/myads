@@ -2380,9 +2380,13 @@ responsive
     border-top-right-radius: 0px;
   }
 
-  .blog-posts {
+  /* .blog-posts {
     margin-left: 0px;
     margin-top: 30px;
+  } */
+
+  .blog-posts {
+    visibility: hidden;
   }
 
   .post-item {
@@ -2427,16 +2431,16 @@ responsive
 
 @media (max-width: 449px) {
 
-  .blog .blog-posts .post-item span,
+  /* .blog .blog-posts .post-item span,
   .blog .blog-posts .post-item a {
     font-size: 10px;
   }
 
   .blog .blog-posts .post-item h4 {
     font-size: 12px;
-  }
+  } */
 
-  .blog .blog-posts .post-item .date {
+  /* .blog .blog-posts .post-item .date {
     visibility: hidden;
-  }
+  } */
 }

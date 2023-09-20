@@ -124,8 +124,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $excerpt = strip_tags($new);
         }
 
+        $user_id = $_SESSION["id"];
         // Prepare an update statement
         $sql = "UPDATE blogs SET 
+        user_id = $user_id,
         category_id = $category_id, 
         title = '$title', 
         slug = '$slug', 

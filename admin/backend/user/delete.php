@@ -32,11 +32,25 @@ if (file_exists($filePath)) {
 }
 
 if (mysqli_query($link, $sql)) {
-    // set session
+    // Initialize the session
     session_start();
-    $_SESSION['blog_posted_message'] = 'Users berhasil dihapus';
-    // Redirect to login page
-    header("location: ../../layouts/users/users.php");
+
+    if ($_SESSION["id"] == $id) {
+        // Unset all of the session variables
+        $_SESSION = array();
+
+        // Destroy the session.
+        session_destroy();
+
+        // Redirect to login page
+        header("location: ../../layouts/authentication/login.php");
+
+        exit;
+    } else {
+        $_SESSION['blog_posted_message'] = 'Users berhasil dihapus';
+        // Redirect to login page
+        header("location: ../../layouts/users/users.php");
+    }
 } else {
     $exec_err = mysqli_error($link);
 
