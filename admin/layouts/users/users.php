@@ -169,6 +169,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             </tr>
                         </thead>
                         <tbody class=" align-middle fs-5">
+                            <img src="../../images/profile/" alt="" width="100%">
                             <?php  // SQL QUERY
 
                             $query = "SELECT * FROM `users` ORDER BY name DESC;";
@@ -185,7 +186,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                         <td><?php echo $row["name"] ?></td>
                                         <td><?php echo $row["username"] ?></td>
                                         <td>
-
+                                            <a class="badge bg-primary" onclick="return openModal(<?php echo $row['id'] ?>)"><i class="bi bi-eye"></i></a>
                                             <a href="/myads/admin/layouts/users/edit.php?id=<?php echo $row["id"] ?>" class="btn badge bg-warning"><i class="bi bi-pencil-square"></i></a>
                                             <a onclick="return confirm('Apakah anda ingin menghapus kategori ini?')" href="/myads/admin/backend/user/delete.php?id=<?php echo $row["id"] ?>" class="btn badge bg-danger"><i class="bi bi-trash"></i></a>
                                         </td>
@@ -206,6 +207,27 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         </div>
     </div>
 
+    <!-- Modal -->
+    <div id="exampleModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalContent">
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
@@ -217,12 +239,39 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             $('#myTable').DataTable();
         });
     </script>
+
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <!-- Feather Icon -->
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
+    </script>
+
+    <script>
+        function openModal(userId) {
+            // Set the ID you want to pass to the modal
+            var id = userId; // Replace with your desired ID
+
+            // Send an AJAX request to fetch data based on the ID
+            $.ajax({
+                type: 'POST', // or 'GET', depending on your server-side implementation
+                url: 'getUser.php', // Replace with the actual PHP script to fetch data
+                data: {
+                    id: id
+                },
+                success: function(response) {
+                    // Show the modal
+                    $('#exampleModal').modal('show');
+                    // Update the modal content with the fetched data
+                    document.getElementById("modalContent").innerHTML = response;
+                },
+                error: function() {
+                    alert('Error fetching data');
+                }
+            });
+        }
     </script>
 
     <!-- Customize js -->

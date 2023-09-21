@@ -37,26 +37,3 @@ function categoryName($category_id)
         $link->close();
     }
 }
-
-// get user
-function getUSer($id)
-{
-    if ($id) {
-        /* Attempt to connect to MySQL database */
-        $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);;
-
-        // SQL QUERY
-        $query = "SELECT * FROM `users` WHERE id = $id";
-        // FETCHING DATA FROM DATABASE
-        $result = mysqli_query($link, $query);
-        $row = "";
-        if (mysqli_num_rows($result) > 0) {
-            $row =  mysqli_fetch_assoc($result);;
-        } else {
-            $row = "User tidak ditemukan";
-        }
-
-        return $row;
-        $link->close();
-    }
-}
