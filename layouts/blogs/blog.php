@@ -59,10 +59,10 @@ include('../../backend/getBanner.php');
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="/myads/#top">Home</a></li>
-                            <li class="scroll-to-section"><a href="/myads/#about">About</a></li>
-                            <li class="scroll-to-section"><a href="/myads/#services">Services</a></li>
-                            <li class="scroll-to-section"><a href="/myads/#portfolio">Projects</a></li>
+                            <li class="scroll-to-section"><a href="../../#top">Home</a></li>
+                            <li class="scroll-to-section"><a href="../../#about">About</a></li>
+                            <li class="scroll-to-section"><a href="../../#services">Services</a></li>
+                            <li class="scroll-to-section"><a href="../../#portfolio">Projects</a></li>
                             <li class="scroll-to-section"><a href="#blog" class="active">Blog</a></li>
                             <!-- <li class="scroll-to-section"><a href="#contact">Contact</a></li> -->
                         </ul>

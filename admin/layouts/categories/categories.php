@@ -7,7 +7,7 @@ require_once "../../backend/config.php";
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: login.php");
+    header("location: ../authentication/login.php");
     exit;
 }
 
@@ -93,7 +93,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <body>
 
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">MY ADS</a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="../../../">MY ADS</a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -148,7 +148,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Categories</h1>
                 </div>
-                <a href="../..//layouts/categories/create.php" class="btn btn-primary mb-3">Create a new
+                <a href="../../layouts/categories/create.php" class="btn btn-primary mb-3">Create a new
                     category</a>
                 <?php
 
@@ -169,7 +169,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         <tbody>
                             <?php  // SQL QUERY
 
-                            $query = "SELECT * FROM `categories` ORDER BY name DESC;";
+                            $query = "SELECT * FROM `categories` ORDER BY name;";
                             // FETCHING DATA FROM DATABASE
                             $result = mysqli_query($link, $query);
 

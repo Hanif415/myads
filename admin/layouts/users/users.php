@@ -7,7 +7,7 @@ require_once "../../backend/config.php";
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: login.php");
+    header("location: ../authentication/login.php");
     exit;
 }
 
@@ -95,7 +95,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <body>
 
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">MY ADS</a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="../../../">MY ADS</a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -174,7 +174,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             <img src="../../images/profile/" alt="" width="100%">
                             <?php  // SQL QUERY
 
-                            $query = "SELECT * FROM `users` ORDER BY name DESC;";
+                            $query = "SELECT * FROM `users` ORDER BY name;";
                             // FETCHING DATA FROM DATABASE
                             $result = mysqli_query($link, $query);
 
