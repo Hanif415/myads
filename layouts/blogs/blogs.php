@@ -53,7 +53,7 @@ include('../../backend/getBanner.php');
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="index.html" class="logo">
+                        <a href="/myads" class="logo">
                             <img src="../../assets/images/myads.png" alt="">
                         </a>
                         <!-- ***** Logo End ***** -->
@@ -122,12 +122,14 @@ include('../../backend/getBanner.php');
                     ?>
                         <div class="item col-lg-4 col-md-6 mb-5 col-12">
                             <div class="blog-item card">
-                                <a href="/layouts/blogs/blog?slug=<?php echo $blog["slug"]; ?>"><img class=" card-img-top" src="../../admin/images/<?php echo $blog["image"] ?>" alt="Card image cap"></a>
+                                <a href="blog.php?slug=<?php echo $blog["slug"]; ?>"><img class=" card-img-top" src="../../admin/images/<?php echo $blog["image"] ?>" alt="Card image cap"></a>
                                 <div class="card-body">
                                     <span class="category mt-3"><?php echo categoryName($blog["category_id"]); ?></span>
-                                    <h5 class="card-title mt-3"><?php echo $blog["title"] ?></h5>
+                                    <a href="blog.php?slug=<?php echo $blog["slug"]; ?>" style="text-decoration: none; color:black;">
+                                        <h5 class="card-title mt-3"><?php echo $blog["title"] ?></h5>
+                                    </a>
                                     <p><?php echo $blog["excerpt"]; ?></p>
-                                    <a href="/layouts/blogs/blog?slug=<?php echo $blog["slug"]; ?>" class="btn btn-success w-100 mt-3">Read More <i class="bi bi-arrow-right"></i></a>
+                                    <a href="blog.php?slug=<?php echo $blog["slug"]; ?>" class="btn btn-success w-100 mt-3">Read More <i class="bi bi-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>

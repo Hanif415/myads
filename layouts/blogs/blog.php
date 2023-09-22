@@ -53,7 +53,7 @@ include('../../backend/getBanner.php');
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="index.html" class="logo">
+                        <a href="/myads" class="logo">
                             <img src="../../assets/images/myads.png" alt="">
                         </a>
                         <!-- ***** Logo End ***** -->
@@ -78,7 +78,7 @@ include('../../backend/getBanner.php');
 
     <!-- ***** Header Area End ***** -->
     <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
-        <!-- <div class="container">
+        <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">
@@ -86,8 +86,8 @@ include('../../backend/getBanner.php');
                             <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <h2> Blog<span> MY ADS </span> </h2>
-                                        <p>Perluas wawasan tentang dunia digital dan teknologi dengan mengikuti perkembangan terbaru di blog MY ADS.</p>
+                                        <!-- <h2> Blog<span> MY ADS </span> </h2>
+                                        <p>Perluas wawasan tentang dunia digital dan teknologi dengan mengikuti perkembangan terbaru di blog MY ADS.</p> -->
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@ include('../../backend/getBanner.php');
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
     </div>
 
     <?php
@@ -127,7 +127,11 @@ include('../../backend/getBanner.php');
                                         <img src="../../admin/images/<?php echo $row["image"] ?>" class="img-fluid mt-3">
                                     </div>
                                 <?php } ?>
-                                <p class="mt-3 fs-6"><span class="badge bg-success"><?php echo $user["name"]; ?> </span> <span class="badge bg-success"><?php echo categoryName($row["category_id"]) ?></span></p>
+                                <p class="mt-3 fs-6">
+                                    <span class="badge badge-pill bg-success"><?php echo $user["name"]; ?> </span>
+                                    <span class="badge badge-pill bg-success"><?php echo categoryName($row["category_id"]) ?></span>
+                                    <span class="badge badge-pill bg-success"><?php echo changeDateFormat($row["published_at"]); ?></span>
+                                </p>
 
                                 <article class="my-3 fs-5">
                                     <?php echo $row["body"] ?>
