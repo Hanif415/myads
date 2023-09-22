@@ -54,7 +54,7 @@ include('../../backend/getBanner.php');
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
                         <a href="/myads" class="logo">
-                            <img src="../../assets/images/myads.png" alt="">
+                            <img src="../../assets/images/myads.jpg" alt="">
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->

@@ -601,7 +601,7 @@ include('backend/getBanner.php');
         $result = mysqli_query($link, $query);
         if (mysqli_num_rows($result) > 0) {
           $newBlog = mysqli_fetch_assoc($result);
-          $user = getUSer($newBlog["user_id"]);
+          $user = getUser($newBlog["user_id"]);
         ?>
           <div class="col-lg-6 show-up wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
             <div class="blog-post">
@@ -619,7 +619,7 @@ include('backend/getBanner.php');
                   </div>
                 </div> -->
 
-                <a href="layouts/blogs/blog.php?slug=<?php echo $newBlog["id"]; ?>">
+                <a href="layouts/blogs/blog.php?slug=<?php echo $newBlog["slug"]; ?>">
                   <h4><?php echo $newBlog["title"]; ?></h4>
                 </a>
                 <p><?php echo $newBlog["excerpt"]; ?></p>

@@ -54,7 +54,7 @@ include('../../backend/getBanner.php');
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
                         <a href="/myads" class="logo">
-                            <img src="../../assets/images/myads.png" alt="">
+                            <img src="../../assets/images/myads.jpg" alt="">
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
@@ -112,7 +112,7 @@ include('../../backend/getBanner.php');
         // FETCHING DATA FROM DATABASE
         $result = mysqli_query($link, $query);
         $row = mysqli_fetch_assoc($result);
-        $user = getUSer($row["user_id"]);
+        $user = getUser($row["user_id"]);
     ?>
         <div class="blogs" style="margin-top: -200px;">
             <div class="container">

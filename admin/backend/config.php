@@ -39,7 +39,7 @@ function categoryName($category_id)
 }
 
 // get user
-function getUSer($id)
+function getUser($id)
 {
     if ($id) {
         /* Attempt to connect to MySQL database */
@@ -47,6 +47,28 @@ function getUSer($id)
 
         // SQL QUERY
         $query = "SELECT * FROM `users` WHERE id = $id";
+        // FETCHING DATA FROM DATABASE
+        $result = mysqli_query($link, $query);
+        $row = "";
+        if (mysqli_num_rows($result) > 0) {
+            $row =  mysqli_fetch_assoc($result);;
+        } else {
+            $row = "User tidak ditemukan";
+        }
+
+        return $row;
+        $link->close();
+    }
+}
+
+function getUserByUsername($username)
+{
+    if ($username) {
+        /* Attempt to connect to MySQL database */
+        $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);;
+
+        // SQL QUERY
+        $query = "SELECT * FROM `users` WHERE username = '$username'";
         // FETCHING DATA FROM DATABASE
         $result = mysqli_query($link, $query);
         $row = "";

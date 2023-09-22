@@ -5,5 +5,5 @@
 // $result = mysqli_query($link, $query);
 // if (mysqli_num_rows($result) > 0) {
 //     $newBlog = mysqli_fetch_assoc($result);
-//     $user = getUSer($newBlog["user_id"]);
+//     $user = getUser($newBlog["user_id"]);
 // }

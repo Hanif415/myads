@@ -30,6 +30,8 @@ if (isset($_GET['id'])) {
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+    $user_id = trim($_POST["id"]);
+
     // validate name 
     if (empty(trim($_POST["name"]))) {
         $name_err = "Please enter a name";
@@ -60,7 +62,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 /* store result */
                 mysqli_stmt_store_result($stmt);
 
-                if (mysqli_stmt_num_rows($stmt) == 1) {
+                $user = getUserByUsername($_POST["username"]);
+
+                if (mysqli_stmt_num_rows($stmt) == 1 && $user_id != $user["id"]) {
                     $username_err = "This username is already taken.";
                 } else {
                     $username = trim($_POST["username"]);
@@ -75,18 +79,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Validate password
-    if (empty(trim($_POST["password"]))) {
-        $password_err = "Please enter a password.";
-    } elseif (strlen(trim($_POST["password"])) < 6) {
-        $password_err = "Password must have atleast 6 characters.";
-    } else {
-        $password = trim($_POST["password"]);
+    if (!empty(trim($_POST["password"]))) {
+        if (strlen(trim($_POST["password"])) < 6) {
+            $password_err = "Password must have atleast 6 characters.";
+        } else {
+            $password = trim($_POST["password"]);
+        }
     }
 
     // Validate confirm password
-    if (empty(trim($_POST["confirm_password"]))) {
-        $confirm_password_err = "Please confirm password.";
-    } else {
+    if (!empty(trim($_POST["confirm_password"]))) {
         $confirm_password = trim($_POST["confirm_password"]);
         if (empty($password_err) && ($password != $confirm_password)) {
             $confirm_password_err = "Password did not match.";
@@ -137,7 +139,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $profile_photo = $_POST["profile_photo"];
     }
 
-    $user_id = trim($_POST["id"]);
     $sql = "";
     if (!empty(trim($_POST["password"]))) {
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
@@ -155,41 +156,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         WHERE id = $user_id";
     }
 
+    if (empty($name_err) && empty($username_err) && empty($photo_err) && empty($password_err) && empty($confirm_password_err) && $uploadOk == 1) {
+        if (mysqli_query($link, $sql)) {
 
-    if (mysqli_query($link, $sql)) {
-
-        // Upload image to image folder
-        if (isset($_FILES["image"]["tmp_name"]) && !empty($_FILES["image"]["tmp_name"])) {
-            // Check if $uploadOk is set to 0 by an error
-            if ($uploadOk == 0) {
-                // $image_err = "Sorry, your file was not uploaded.";
-                // if everything is ok, try to upload file
-            } else {
-                $image = $_POST["blog_image"];;
-                $filePath = "../../images/$image";
-                // delete the file if the image change
-                if (file_exists($filePath)) {
-                    unlink($filePath);
-                }
-
-                if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                    // echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
+            // Upload image to image folder
+            if (isset($_FILES["image"]["tmp_name"]) && !empty($_FILES["image"]["tmp_name"])) {
+                // Check if $uploadOk is set to 0 by an error
+                if ($uploadOk == 0) {
+                    // $image_err = "Sorry, your file was not uploaded.";
+                    // if everything is ok, try to upload file
                 } else {
-                    $image_err = "Sorry, there was an error uploading your file.";
+                    $image = $_POST["blog_image"];;
+                    $filePath = "../../images/$image";
+                    // delete the file if the image change
+                    if (file_exists($filePath)) {
+                        unlink($filePath);
+                    }
+
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                        // echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
+                    } else {
+                        $image_err = "Sorry, there was an error uploading your file.";
+                    }
                 }
             }
+            // End upload image to image folder
+
+            // set session
+            session_start();
+            $_SESSION['message'] = 'User berhasil di update';
+            // Redirect to login page
+            header("location: ../../layouts/users/users.php");
+        } else {
+            $exec_err = $user_id;
         }
-        // End upload image to image folder
-
-        // set session
-        session_start();
-        $_SESSION['message'] = 'User berhasil di update';
-        // Redirect to login page
-        header("location: ../../layouts/users/users.php");
-    } else {
-        $exec_err = $user_id;
-
-        // Close connection
-        mysqli_close($link);
     }
+    // Close connection
+    mysqli_close($link);
 }
