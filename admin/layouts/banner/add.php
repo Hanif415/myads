@@ -112,31 +112,31 @@ include('../../backend/banner/add.php');
                 <div class="position-sticky pt-3 sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/myads/admin/">
+                            <a class="nav-link" aria-current="page" href="../../index.php">
                                 <span data-feather="home" class="align-text-bottom"></span>
                                 Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/myads/admin/layouts/blog/blog.php">
+                            <a class="nav-link" aria-current="page" href="../blog/blog.php">
                                 <span data-feather="layout" class="align-text-bottom"></span>
                                 Blogs
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/myads/admin/layouts/categories/categories.php">
+                            <a class="nav-link" aria-current="page" href="../categories/categories.php">
                                 <span data-feather="tag" class="align-text-bottom"></span>
                                 Categories
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/myads/admin/layouts/banner/banner.php">
+                            <a class="nav-link active" aria-current="page" href="../banner/banner.php">
                                 <span data-feather="image" class="align-text-bottom"></span>
                                 Banner
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/myads/admin/layouts/users/users.php">
+                            <a class="nav-link" aria-current="page" href="../users/users.php">
                                 <span data-feather="user" class="align-text-bottom"></span>
                                 Users
                             </a>
