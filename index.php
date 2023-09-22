@@ -62,7 +62,7 @@ include('backend/getBanner.php');
         <div class="col-12">
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
-            <a href="/myads" class="logo">
+            <a href="index.php" class="logo">
               <img src="assets/images/myads.jpg" alt="">
             </a>
             <!-- ***** Logo End ***** -->
