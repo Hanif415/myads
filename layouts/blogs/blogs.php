@@ -63,7 +63,7 @@ include('../../backend/getBanner.php');
                             <li class="scroll-to-section"><a href="../../#about">About</a></li>
                             <li class="scroll-to-section"><a href="../../#services">Services</a></li>
                             <li class="scroll-to-section"><a href="../../#portfolio">Projects</a></li>
-                            <li class="scroll-to-section"><a href="#blog" class="active">Blog</a></li>
+                            <li class="scroll-to-section"><a href="blogs.php" class="active">Blog</a></li>
                             <!-- <li class="scroll-to-section"><a href="#contact">Contact</a></li> -->
                         </ul>
                         <a class='menu-trigger'>
@@ -86,8 +86,14 @@ include('../../backend/getBanner.php');
                             <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <h2> Blog<span> MY ADS </span> </h2>
-                                        <p>Perluas wawasan tentang dunia digital dan teknologi dengan mengikuti perkembangan terbaru di blog MY ADS.</p>
+                                        <?php if (isset($_GET["category"])) { ?>
+                                            <h2> Category: <span><?php echo $category["name"] ?></span> </h2>
+                                        <?php } else {
+                                        ?>
+                                            <h2> Blog<span> MY ADS </span> </h2>
+                                            <p>Perluas wawasan tentang dunia digital dan teknologi dengan mengikuti perkembangan terbaru di blog MY ADS.</p>
+                                        <?php
+                                        } ?>
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +109,7 @@ include('../../backend/getBanner.php');
             <h4 class="text-center mb-3">Baca Artikel Terbaru</h4>
             <div class="row justify-content-center mb-3">
                 <div class="col-lg-6 col-md-8 col-sm-10">
-                    <form action="index.php">
+                    <form action="blogs.php">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Search..." name="search" value="<?php echo $search ?>">
                             <button class="btn btn-success" type="submit">Search</button>
@@ -124,7 +130,9 @@ include('../../backend/getBanner.php');
                             <div class="blog-item card">
                                 <a href="blog.php?slug=<?php echo $blog["slug"]; ?>"><img class=" card-img-top" src="../../admin/images/<?php echo $blog["image"] ?>" alt="Card image cap"></a>
                                 <div class="card-body">
-                                    <span class="category mt-3"><?php echo categoryName($blog["category_id"]); ?></span>
+                                    <a href="?category=<?php echo categorySlug($blog["category_id"]) ?>">
+                                        <span class="category mt-3"><?php echo categoryName($blog["category_id"]); ?></span>
+                                    </a>
                                     <a href="blog.php?slug=<?php echo $blog["slug"]; ?>" style="text-decoration: none; color:black;">
                                         <h5 class="card-title mt-3"><?php echo $blog["title"] ?></h5>
                                     </a>

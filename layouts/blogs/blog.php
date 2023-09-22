@@ -63,7 +63,7 @@ include('../../backend/getBanner.php');
                             <li class="scroll-to-section"><a href="../../#about">About</a></li>
                             <li class="scroll-to-section"><a href="../../#services">Services</a></li>
                             <li class="scroll-to-section"><a href="../../#portfolio">Projects</a></li>
-                            <li class="scroll-to-section"><a href="#blog" class="active">Blog</a></li>
+                            <li class="scroll-to-section"><a href="blogs.php" class="active">Blog</a></li>
                             <!-- <li class="scroll-to-section"><a href="#contact">Contact</a></li> -->
                         </ul>
                         <a class='menu-trigger'>
