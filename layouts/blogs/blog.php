@@ -35,12 +35,12 @@ include('../../backend/getBanner.php');
     <link rel="stylesheet" href="../../assets/css/owl.css">
 
     <style>
-        .main-banner:before {
+        /* .main-banner:before {
             content: '';
             <?php
             echo "background-image: url(../../assets/images/banner/$banner[name])";
             ?>
-        }
+        } */
     </style>
 </head>
 
@@ -78,7 +78,7 @@ include('../../backend/getBanner.php');
 
     <!-- ***** Header Area End ***** -->
     <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
-        <div class="container">
+        <!-- <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">
@@ -95,36 +95,52 @@ include('../../backend/getBanner.php');
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
-    <div class="blogs" style="margin-top: 204px;">
-        <div class="container">
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="container">
-                    <div class="row my-3">
-                        <div class="col-lg-8">
-                            <h1 class="mb-3"><?php echo $blog_title ?></h1>
+    <?php
+    // $blog_id = $blog_category_id = $blog_title = $blog_image = 
+    $slug = "";
 
-                            <?php if ($blog_image != "") { ?>
-                                <div class="blog-image">
-                                    <img src="../../images/<?php echo $blog_image ?>" class="img-fluid mt-3">
-                                </div>
-                            <?php } ?>
-                            <p class="mt-3">Categories <span class="badge bg-secondary"><?php echo categoryName($blog_category_id) ?></span></p>
+    if (isset($_GET['slug'])) {
+        // The 'id' parameter is set, so you can safely use it
+        $slug = $_GET['slug'];
 
-                            <article class="my-3 fs-5">
-                                <?php echo $blog_body ?>
-                            </article>
-                            <br>
+        // SQL QUERY
+        $query = "SELECT * FROM `blogs` WHERE slug = '$slug';";
+        echo mysqli_error($link);
+        // FETCHING DATA FROM DATABASE
+        $result = mysqli_query($link, $query);
+        $row = mysqli_fetch_assoc($result);
+        $user = getUSer($row["user_id"]);
+    ?>
+        <div class="blogs" style="margin-top: -200px;">
+            <div class="container">
+                <main class="col-md-9 m-sm-auto col-lg-10 px-md-4">
+                    <div class="container">
+                        <div class="row my-3">
+                            <div class="col-lg-12">
+                                <h1 class="mb-3"><?php echo $row["title"] ?></h1>
 
+                                <?php if ($row["image"] != "") { ?>
+                                    <div class="blog-image">
+                                        <img src="../../admin/images/<?php echo $row["image"] ?>" class="img-fluid mt-3">
+                                    </div>
+                                <?php } ?>
+                                <p class="mt-3 fs-6"><span class="badge bg-success"><?php echo $user["name"]; ?> </span> <span class="badge bg-success"><?php echo categoryName($row["category_id"]) ?></span></p>
+
+                                <article class="my-3 fs-5">
+                                    <?php echo $row["body"] ?>
+                                </article>
+                                <br>
+
+                            </div>
                         </div>
                     </div>
-
-                </div>
-            </main>
+                </main>
+            </div>
         </div>
-    </div>
+    <?php } ?>
     <footer>
         <div class="container">
             <div class="row justify-content-center foot-item">

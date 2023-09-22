@@ -606,7 +606,7 @@ include('backend/getBanner.php');
           <div class="col-lg-6 show-up wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
             <div class="blog-post">
               <div class="thumb">
-                <a href="/myads/layouts/blogs/blog_detail/?id=<?php echo $newBlog["id"]; ?>"><img src="admin/images/<?php echo $newBlog["image"]; ?>" alt=""></a>
+                <a href="/myads/layouts/blogs/blog.php?slug=<?php echo $newBlog["slug"]; ?>"><img src="admin/images/<?php echo $newBlog["image"]; ?>" alt=""></a>
               </div>
               <div class="down-content">
                 <span class="category"><?php echo categoryName($newBlog["category_id"]); ?></span>
@@ -619,7 +619,7 @@ include('backend/getBanner.php');
                   </div>
                 </div> -->
 
-                <a href="/myads/blogs/blog_detail/?id=<?php echo $newBlog["id"]; ?>">
+                <a href="/myads/blogs/blog_detail?slug=<?php echo $newBlog["id"]; ?>">
                   <h4><?php echo $newBlog["title"]; ?></h4>
                 </a>
                 <p><?php echo $newBlog["excerpt"]; ?></p>
@@ -665,12 +665,12 @@ include('backend/getBanner.php');
                   <div class="col-lg-12 mb-lg-4 mb-1">
                     <div class="post-item">
                       <div class="thumb">
-                        <a href="/myads/layouts/blogs/blog_detail/?id=<?php echo $newBlog["id"]; ?>"><img src="admin/images/<?php echo $blogs["image"]; ?>" alt=""></a>
+                        <a href="/myads/layouts/blogs/blog.php?slug=<?php echo $blogs["slug"]; ?>"><img src="admin/images/<?php echo $blogs["image"]; ?>" alt=""></a>
                       </div>
                       <div class="right-content">
                         <span class="category"><?php echo categoryName($blogs["category_id"]) ?></span>
                         <!-- <span class="date"><?php changeDateFormat($blogs["published_at"]); ?></span> -->
-                        <a href="/myads/layouts/blogs/blog_detail/?id=<?php echo $newBlog["id"]; ?>">
+                        <a href="/myads/layouts/blogs/blog?slug=<?php echo $blogs["slug"]; ?>">
                           <h4><?php echo $blogs["title"]; ?></h4>
                         </a>
                         <p><?php echo $blogs["excerpt"]; ?></p>

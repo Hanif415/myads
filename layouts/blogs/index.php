@@ -122,12 +122,12 @@ include('../../backend/getBanner.php');
                     ?>
                         <div class="item col-lg-4 col-md-6 mb-5 col-12">
                             <div class="blog-item card">
-                                <img class=" card-img-top" src="../../admin/images/<?php echo $blog["image"] ?>" alt="Card image cap">
+                                <a href="/layouts/blogs/blog?slug=<?php echo $blog["slug"]; ?>"><img class=" card-img-top" src="../../admin/images/<?php echo $blog["image"] ?>" alt="Card image cap"></a>
                                 <div class="card-body">
                                     <span class="category mt-3"><?php echo categoryName($blog["category_id"]); ?></span>
                                     <h5 class="card-title mt-3"><?php echo $blog["title"] ?></h5>
                                     <p><?php echo $blog["excerpt"]; ?></p>
-                                    <a href="#" class="btn btn-success w-100 mt-3">Read More <i class="bi bi-arrow-right"></i></a>
+                                    <a href="/layouts/blogs/blog?slug=<?php echo $blog["slug"]; ?>" class="btn btn-success w-100 mt-3">Read More <i class="bi bi-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
