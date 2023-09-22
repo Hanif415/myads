@@ -152,9 +152,9 @@ include('../../backend/banner/add.php');
                 </div>
                 <?php
 
-                if (isset($_SESSION['blog_posted_message'])) {
-                    echo '<div class="alert alert-success">' . $_SESSION['blog_posted_message'] . '</div>';
-                    unset($_SESSION['blog_posted_message']);
+                if (isset($_SESSION['message'])) {
+                    echo '<div class="alert alert-success">' . $_SESSION['message'] . '</div>';
+                    unset($_SESSION['message']);
                 }
                 ?>
                 <form method="post" action="add.php" enctype="multipart/form-data" class="mb-5">

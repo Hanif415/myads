@@ -93,7 +93,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <body>
 
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">MY ADS</a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="/myads">MY ADS</a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -148,12 +148,12 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">My Blogs</h1>
                 </div>
-                <a href="/myads/admin/layouts/blog/create.php" class="btn btn-primary mb-3">Create a new blog</a>
+                <a href="../../layouts/blog/create.php" class="btn btn-primary mb-3">Create a new blog</a>
                 <?php
 
-                if (isset($_SESSION['blog_posted_message'])) {
-                    echo '<div class="alert alert-success">' . $_SESSION['blog_posted_message'] . '</div>';
-                    unset($_SESSION['blog_posted_message']);
+                if (isset($_SESSION['message'])) {
+                    echo '<div class="alert alert-success">' . $_SESSION['message'] . '</div>';
+                    unset($_SESSION['message']);
                 }
                 ?>
                 <div class="table-responsive mb-5">
@@ -185,8 +185,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                         <td><?php echo categoryName($row["category_id"]) ?></td>
                                         <td><?php echo $row["published_at"] ?></td>
                                         <td>
-                                            <a href="/myads/admin/layouts/blog/show.php?id=<?php echo $row["id"] ?>" class="btn badge bg-primary"><i class="bi bi-eye"></i></a>
-                                            <a href="/myads/admin/layouts/blog/edit.php?id=<?php echo $row["id"] ?>" class="btn badge bg-warning"><i class="bi bi-pencil-square"></i></a>
+                                            <a href="../../layouts/blog/show.php?id=<?php echo $row["id"] ?>" class="btn badge bg-primary"><i class="bi bi-eye"></i></a>
+                                            <a href="../../layouts/blog/edit.php?id=<?php echo $row["id"] ?>" class="btn badge bg-warning"><i class="bi bi-pencil-square"></i></a>
                                             <a href="../../backend/blog/delete.php?id=<?php echo $row["id"] ?>" class="btn badge bg-danger" onclick="return confirm('Apakah anda ingin menghapus blog ini?')"><i class="bi bi-trash"></i></a>
                                         </td>
                                     </tr>

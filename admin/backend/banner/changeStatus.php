@@ -27,7 +27,7 @@ WHERE id = $banner_id";
 if (mysqli_query($link, $sql)) {
     // set session
     session_start();
-    $_SESSION['blog_posted_message'] = 'Banner berhasil diganti';
+    $_SESSION['message'] = 'Banner berhasil diganti';
     // Redirect to login page
     header("location: ../../layouts/banner/banner.php");
 } else {

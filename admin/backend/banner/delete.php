@@ -34,7 +34,7 @@ if (file_exists($filePath)) {
 if (mysqli_query($link, $sql)) {
     // set session
     session_start();
-    $_SESSION['blog_posted_message'] = 'Banner berhasil dihapus';
+    $_SESSION['message'] = 'Banner berhasil dihapus';
     // Redirect to login page
     header("location: ../../layouts/banner/banner.php");
 } else {

@@ -183,7 +183,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // set session
         session_start();
-        $_SESSION['blog_posted_message'] = 'User berhasil di update';
+        $_SESSION['message'] = 'User berhasil di update';
         // Redirect to login page
         header("location: ../../layouts/users/users.php");
     } else {

@@ -34,7 +34,7 @@ if (file_exists($filePath)) {
 if (mysqli_query($link, $sql)) {
     // set session
     session_start();
-    $_SESSION['blog_posted_message'] = 'Blog berhasil dihapus';
+    $_SESSION['message'] = 'Blog berhasil dihapus';
     // Redirect to login page
     header("location: ../../layouts/blog/blog.php");
 } else {

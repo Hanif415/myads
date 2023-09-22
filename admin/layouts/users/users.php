@@ -150,13 +150,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Users</h1>
                 </div>
-                <a href="/myads/admin/layouts/users/create.php" class="btn btn-primary mb-3">Create a new
+                <a href="../../layouts/users/create.php" class="btn btn-primary mb-3">Create a new
                     users</a>
 
                 <?php
-                if (isset($_SESSION['blog_posted_message'])) {
-                    echo '<div class="alert alert-success">' . $_SESSION['blog_posted_message'] . '</div>';
-                    unset($_SESSION['blog_posted_message']);
+                if (isset($_SESSION['message'])) {
+                    echo '<div class="alert alert-success">' . $_SESSION['message'] . '</div>';
+                    unset($_SESSION['message']);
                 }
                 ?>
 
@@ -189,8 +189,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                         <td><?php echo $row["username"] ?></td>
                                         <td>
                                             <a href="#" class="btn badge bg-primary" onclick="return openModal(<?php echo $row['id'] ?>)"><i class="bi bi-eye"></i></a>
-                                            <a href="/myads/admin/layouts/users/edit.php?id=<?php echo $row["id"] ?>" class="btn badge bg-warning"><i class="bi bi-pencil-square"></i></a>
-                                            <a onclick="return confirm('Apakah anda ingin menghapus kategori ini?')" href="/myads/admin/backend/user/delete.php?id=<?php echo $row["id"] ?>" class="btn badge bg-danger"><i class="bi bi-trash"></i></a>
+                                            <a href="../../layouts/users/edit.php?id=<?php echo $row["id"] ?>" class="btn badge bg-warning"><i class="bi bi-pencil-square"></i></a>
+                                            <a onclick="return confirm('Apakah anda ingin menghapus kategori ini?')" href="../../backend/user/delete.php?id=<?php echo $row["id"] ?>" class="btn badge bg-danger"><i class="bi bi-trash"></i></a>
                                         </td>
                                     </tr>
                             <?php
@@ -247,6 +247,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     </script>
 
     <script>
+        // Kirim data ke getUser.php untuk mendapatkan data user
         function openModal(userId) {
             // Set the ID you want to pass to the modal
             var id = userId; // Replace with your desired ID

@@ -125,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // set session
                 session_start();
-                $_SESSION['blog_posted_message'] = 'Blog berhasil di post';
+                $_SESSION['message'] = 'Blog berhasil di post';
                 // Redirect to login page
                 header("location: ../../layouts/blog/blog.php");
             } else {

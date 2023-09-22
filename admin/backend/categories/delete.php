@@ -22,7 +22,7 @@ $sql = "DELETE FROM categories
 if (mysqli_query($link, $sql)) {
     // set session
     session_start();
-    $_SESSION['blog_posted_message'] = 'Kategori berhasil dihapus';
+    $_SESSION['message'] = 'Kategori berhasil dihapus';
     // Redirect to login page
     header("location: ../../layouts/categories/categories.php");
 } else {

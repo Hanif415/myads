@@ -149,12 +149,12 @@ include('../../backend/banner/getAllBanner.php');
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Banner</h1>
                 </div>
-                <a href="/myads/admin/layouts/banner/add.php" class="btn btn-primary mb-3">Add new banner</a>
+                <a href="../../layouts/banner/add.php" class="btn btn-primary mb-3">Add new banner</a>
                 <?php
 
-                if (isset($_SESSION['blog_posted_message'])) {
-                    echo '<div class="alert alert-success">' . $_SESSION['blog_posted_message'] . '</div>';
-                    unset($_SESSION['blog_posted_message']);
+                if (isset($_SESSION['message'])) {
+                    echo '<div class="alert alert-success">' . $_SESSION['message'] . '</div>';
+                    unset($_SESSION['message']);
                 }
                 ?>
                 <div class="row">
@@ -164,7 +164,7 @@ include('../../backend/banner/getAllBanner.php');
                     ?>
                             <div class="item col-lg-4 col-md-6 mb-5 col-12">
                                 <div class="blog-item card">
-                                    <img class=" card-img-top" src="../../../assets/images/banner/<?php echo $banner["name"] ?>" alt="Card image cap">
+                                    <img class=" card-img-top" src="../../../assets/images/banner/<?php echo $banner["name"] ?>" alt="<?php echo $banner["name"] ?>">
                                     <div class="card-body">
                                         <div class="row">
                                             <?php if ($banner['status'] == 1) { ?>

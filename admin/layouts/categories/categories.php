@@ -148,13 +148,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Categories</h1>
                 </div>
-                <a href="/myads/admin/layouts/categories/create.php" class="btn btn-primary mb-3">Create a new
+                <a href="../..//layouts/categories/create.php" class="btn btn-primary mb-3">Create a new
                     category</a>
                 <?php
 
-                if (isset($_SESSION['blog_posted_message'])) {
-                    echo '<div class="alert alert-success">' . $_SESSION['blog_posted_message'] . '</div>';
-                    unset($_SESSION['blog_posted_message']);
+                if (isset($_SESSION['message'])) {
+                    echo '<div class="alert alert-success">' . $_SESSION['message'] . '</div>';
+                    unset($_SESSION['message']);
                 }
                 ?>
                 <div class="table-responsive mb-5 col-sm-5">
@@ -183,7 +183,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                         <td><?php echo $row["name"] ?></td>
                                         <td>
 
-                                            <a href="/myads/admin/layouts/categories/edit.php?id=<?php echo $row["id"] ?>" class="btn badge bg-warning"><i class="bi bi-pencil-square"></i></a>
+                                            <a href="../../layouts/categories/edit.php?id=<?php echo $row["id"] ?>" class="btn badge bg-warning"><i class="bi bi-pencil-square"></i></a>
                                             <a href="../../backend/categories/delete.php?id=<?php echo $row["id"] ?>" class="btn badge bg-danger" onclick="return confirm('Apakah anda ingin menghapus kategori ini?')"><i class="bi bi-trash"></i></a>
                                         </td>
                                     </tr>

@@ -47,7 +47,7 @@ if (mysqli_query($link, $sql)) {
 
         exit;
     } else {
-        $_SESSION['blog_posted_message'] = 'Users berhasil dihapus';
+        $_SESSION['message'] = 'Users berhasil dihapus';
         // Redirect to login page
         header("location: ../../layouts/users/users.php");
     }
