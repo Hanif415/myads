@@ -154,7 +154,7 @@ include('../../backend/getBanner.php');
                         <a href="#about" style="color: white;">
                             <li>About Us</li>
                         </a>
-                        <a href="layouts/blogs/blogs.php" target="_blank" style="color: white;">
+                        <a href="blogs.php" target="_blank" style="color: white;">
                             <li>Check Our Blog</li>
                         </a>
                     </ul>
