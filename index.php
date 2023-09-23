@@ -516,7 +516,7 @@ include('backend/getBanner.php');
         <div class="col-lg-12">
           <div class="loop owl-carousel">
             <div class="item">
-              <a href="#">
+              <a href="#portfolio">
                 <div class="portfolio-item">
                   <div class="thumb">
                     <img src="assets/images/indiech.jpg" alt="">
@@ -528,7 +528,7 @@ include('backend/getBanner.php');
               </a>
             </div>
             <div class="item">
-              <a href="#">
+              <a href="#portfolio">
                 <div class="portfolio-item">
                   <div class="thumb">
                     <img src="assets/images/indiech2.jpg" alt="">
@@ -540,7 +540,7 @@ include('backend/getBanner.php');
               </a>
             </div>
             <div class="item">
-              <a href="#">
+              <a href="#portfolio">
                 <div class="portfolio-item">
                   <div class="thumb">
                     <img src="assets/images/SBA.jpg" alt="">
@@ -552,7 +552,7 @@ include('backend/getBanner.php');
               </a>
             </div>
             <div class="item">
-              <a href="#">
+              <a href="#portfolio">
                 <div class="portfolio-item">
                   <div class="thumb">
                     <img src="assets/images/SBA2.jpg" alt="">
@@ -564,7 +564,7 @@ include('backend/getBanner.php');
               </a>
             </div>
             <div class="item">
-              <a href="#">
+              <a href="#portfolio">
                 <div class="portfolio-item">
                   <div class="thumb">
                     <img src="assets/images/ragambentala.png" alt="">
@@ -719,8 +719,12 @@ include('backend/getBanner.php');
         <div class="col-lg-2 col-6">
           <p>MY ADS</p>
           <ul>
-            <li>About Us</li>
-            <li>Check Our Blog</li>
+            <a href="#about" style="color: white;">
+              <li>About Us</li>
+            </a>
+            <a href="layouts/blogs/blogs.php" style="color: white;">
+              <li>Check Our Blog</li>
+            </a>
           </ul>
         </div>
         <div class="col-lg-3 col-6">
@@ -741,14 +745,14 @@ include('backend/getBanner.php');
                 <div class="col-8">
                   <p>Contact Us</p>
                   <ul>
-                    <li><a href="#"><i class="fa fa-phone"></i> 010-020-0340</a></li>
-                    <li><a href="#"><i class="fa fa-envelope"></i> digimedia@company.com</a></li>
+                    <li><a href="https://wa.me/6282126271748" target="_blank"><i class="fa fa-whatsapp"></i> 0821-2627-1748</a></li>
+                    <li><a href="#flyontech.group@gmail.com"><i class="fa fa-envelope"></i> flyontech.group@gmail.com</a></li>
                   </ul>
                 </div>
                 <div class="col-4">
                   <p>Follow Us</p>
                   <ul class="social-media">
-                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="https://instagram.com/myads.id?igshid=NzZhOTFlYzFmZQ=="><i class="fa fa-instagram"></i></a></li>
                   </ul>
                 </div>
               </div>
