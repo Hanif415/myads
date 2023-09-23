@@ -88,12 +88,12 @@ include('../../backend/getBanner.php');
                                     <div class="col-lg-12">
                                         <?php if (isset($_GET["category"])) { ?>
                                             <h2> Category: <span><?php echo $category["name"] ?></span> </h2>
-                                        <?php } else {
-                                        ?>
+                                        <?php } else if (isset($_GET["search"])) { ?>
+                                            <h2> Search for: <span><?php echo $_GET["search"] ?></span> </h2>
+                                        <?php } else { ?>
                                             <h2> Blog<span> MY ADS </span> </h2>
                                             <p>Perluas wawasan tentang dunia digital dan teknologi dengan mengikuti perkembangan terbaru di blog MY ADS.</p>
-                                        <?php
-                                        } ?>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>
