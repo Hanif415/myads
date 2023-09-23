@@ -3,12 +3,6 @@ require_once "../../admin/backend/config.php";
 
 require_once "../../utils/changeDateFormat.php";
 
-$getCategory = "";
-if (isset($_GET["category"])) {
-    $getCategory = $_GET["category"];
-}
-$categoryExist = $getCategory;
-
 include('../../backend/getAllBlog.php');
 include('../../backend/getBanner.php');
 ?>
