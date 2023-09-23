@@ -2084,7 +2084,7 @@ partner
 
 .partner .container {
   min-width: 100%;
-  background-color: #deece5;
+  background-color: #a6d1a6;
   padding: 50px 70px;
 }
 
@@ -2101,15 +2101,16 @@ partner
 
 .partner h1 {
   font-weight: bold;
+  color: #000000;
 }
 
 .partner p {
-  color: #565656;
+  color: #303030;
   margin-top: 15px;
 }
 
 .partner span {
-  color: #63CD97;
+  color: rgb(36, 121, 77);
 }
 
 
