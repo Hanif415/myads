@@ -705,7 +705,7 @@ include('backend/getBanner.php');
               </div>
             </div>
             <div class="col-lg-12 mt-lg-5">
-              <img src="assets/images/partner2.png" alt="">
+              <img src="assets/images/partner.png" alt="">
             </div>
           </div>
         </div>
@@ -722,7 +722,7 @@ include('backend/getBanner.php');
             <a href="#about" style="color: white;">
               <li>About Us</li>
             </a>
-            <a href="layouts/blogs/blogs.php" style="color: white;">
+            <a href="layouts/blogs/blogs.php" target="_blank" style="color: white;">
               <li>Check Our Blog</li>
             </a>
           </ul>
