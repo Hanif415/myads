@@ -3,8 +3,6 @@ require_once "../../admin/backend/config.php";
 
 require_once "../../utils/changeDateFormat.php";
 
-include('../../backend/getAllBlog.php');
-// include('../../backend/getNewBlog.php');
 include('../../backend/getBanner.php');
 ?>
 
