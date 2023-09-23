@@ -129,7 +129,9 @@ include('../../backend/getBanner.php');
                                 <?php } ?>
                                 <p class="mt-3 fs-6">
                                     <span class="badge badge-pill bg-success"><?php echo $user["name"]; ?> </span>
-                                    <span class="badge badge-pill bg-success"><?php echo categoryName($row["category_id"]) ?></span>
+                                    <a href="../blogs/blogs.php?category=<?php echo categorySlug($row["category_id"]) ?>">
+                                        <span class="badge badge-pill bg-success"><?php echo categoryName($row["category_id"]) ?></span>
+                                    </a>
                                     <span class="badge badge-pill bg-success"><?php echo changeDateFormat($row["published_at"]); ?></span>
                                 </p>
 

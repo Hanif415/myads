@@ -607,7 +607,9 @@ include('backend/getBanner.php');
                 <a href="layouts/blogs/blog.php?slug=<?php echo $newBlog["slug"]; ?>"><img src="admin/images/<?php echo $newBlog["image"]; ?>" alt=""></a>
               </div>
               <div class="down-content">
-                <span class="category"><?php echo categoryName($newBlog["category_id"]); ?></span>
+                <a href="layouts/blogs/blogs.php?category=<?php echo categorySlug($newBlog["category_id"]) ?>">
+                  <span class="category"><?php echo categoryName($newBlog["category_id"]); ?></span>
+                </a>
                 <span class="date"><?php changeDateFormat($newBlog["published_at"]); ?></span>
                 <!-- <div class="row">
                   <div class="col-sm-7 col-12">
@@ -666,7 +668,10 @@ include('backend/getBanner.php');
                         <a href="layouts/blogs/blog.php?slug=<?php echo $blogs["slug"]; ?>"><img src="admin/images/<?php echo $blogs["image"]; ?>" alt=""></a>
                       </div>
                       <div class="right-content">
-                        <span class="category"><?php echo categoryName($blogs["category_id"]) ?></span>
+
+                        <a href="layouts/blogs/blogs.php?category=<?php echo categorySlug($blogs["category_id"]) ?>">
+                          <span class="category"><?php echo categoryName($blogs["category_id"]) ?></span>
+                        </a>
                         <!-- <span class="date"><?php changeDateFormat($blogs["published_at"]); ?></span> -->
                         <a href="layouts/blogs/blog.php?slug=<?php echo $blogs["slug"]; ?>">
                           <h4><?php echo $blogs["title"]; ?></h4>
