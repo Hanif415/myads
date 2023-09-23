@@ -158,7 +158,11 @@ include('../../backend/getBanner.php');
                                                     echo "disabled";
                                                 } ?>">
                             <a class="page-link" <?php if ($page > 1) {
-                                                        echo "href='?page=$previous'";
+                                                        if (isset($_GET["category"]) && !empty($_GET["category"])) {
+                                                            echo "href='?category=$_GET[category]&page=$previous'";
+                                                        } else if (isset($_GET["search"]) && !empty($_GET["search"])) {
+                                                            echo "href='?search=$_GET[search]&page=$previous'";
+                                                        }
                                                     } ?>>Previous</a>
                         </li>
                         <?php
@@ -191,7 +195,11 @@ include('../../backend/getBanner.php');
                                                     echo "disabled";
                                                 } ?>">
                             <a class="page-link" <?php if ($page < $total_page) {
-                                                        echo "href='?page=$next'";
+                                                        if (isset($_GET["category"]) && !empty($_GET["category"])) {
+                                                            echo "href='?category=$_GET[category]&page=$next'";
+                                                        } else if (isset($_GET["search"]) && !empty($_GET["search"])) {
+                                                            echo "href='?search=$_GET[search]&page=$next'";
+                                                        }
                                                     } ?>>Next</a>
                         </li>
                     </ul>

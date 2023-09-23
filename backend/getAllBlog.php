@@ -21,7 +21,7 @@ if (isset($_GET["search"]) && !empty($_GET['search'])) {
     $blogs = "";
     // FETCHING DATA FROM DATABASE
     $resultAllBlog = mysqli_query($link, $queryAllBlog);
-} else if (isset($_GET["category"])) {
+} else if (isset($_GET["category"]) && !empty($_GET['category'])) {
     $slug = $_GET["category"];
     $categories = mysqli_query($link, "SELECT * FROM categories WHERE slug = '$slug'");
     $category = mysqli_fetch_assoc($categories);
