@@ -42,7 +42,7 @@ include('backend/getBanner.php');
 
 <body>
   <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
+  <!-- <div id="js-preloader" class="js-preloader">
     <div class="preloader-inner">
       <span class="dot"></span>
       <div class="dots">
@@ -51,7 +51,7 @@ include('backend/getBanner.php');
         <span></span>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
