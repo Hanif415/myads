@@ -190,7 +190,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                         <td>
                                             <a href="#" class="btn badge bg-primary" onclick="return openModal(<?php echo $row['id'] ?>)"><i class="bi bi-eye"></i></a>
                                             <a href="../../layouts/users/edit.php?id=<?php echo $row["id"] ?>" class="btn badge bg-warning"><i class="bi bi-pencil-square"></i></a>
-                                            <a onclick="return confirm('Apakah anda ingin menghapus kategori ini?')" href="../../backend/user/delete.php?id=<?php echo $row["id"] ?>" class="btn badge bg-danger"><i class="bi bi-trash"></i></a>
+                                            <?php if (mysqli_num_rows($result) == 1) {
+                                            ?>
+                                                <button type="button" class="btn badge bg-danger" disabled><i class="bi bi-trash disabled"></i></button>
+                                            <?php } else { ?>
+                                                <a onclick="return confirm('Apakah anda ingin menghapus kategori ini?')" href="../../backend/user/delete.php?id=<?php echo $row["id"] ?>" class="btn badge bg-danger"><i class="bi bi-trash"></i></a>
+                                            <?php } ?>
+
                                         </td>
                                     </tr>
                             <?php
