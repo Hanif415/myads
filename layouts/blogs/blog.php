@@ -116,11 +116,11 @@ include('../../backend/getBanner.php');
     ?>
         <div class="blogs" style="margin-top: -200px;">
             <div class="container">
-                <main class="col-md-9 m-sm-auto col-lg-10 px-md-4">
+                <main class="m-sm-auto col-lg-10 px-md-4">
                     <div class="container">
                         <div class="row my-3">
                             <div class="col-lg-12">
-                                <h1 class="mb-3"><?php echo $row["title"] ?></h1>
+                                <h1 class="mb-3 title"><?php echo $row["title"] ?></h1>
 
                                 <?php if ($row["image"] != "") { ?>
                                     <div class="blog-image">
@@ -135,7 +135,7 @@ include('../../backend/getBanner.php');
                                     <span class="badge badge-pill bg-success"><?php echo changeDateFormat($row["published_at"]); ?></span>
                                 </p>
 
-                                <article class="my-3 fs-5">
+                                <article class="body my-3 fs-5">
                                     <?php echo $row["body"] ?>
                                 </article>
                                 <br>

@@ -2314,6 +2314,10 @@ responsive
     margin-top: 50px;
   }
 
+  .blogs .title {
+    margin-top: 30px;;
+  }
+
 }
 
 @media (max-width: 767px) {
@@ -2461,4 +2465,8 @@ responsive
   /* .blogs .blog-item {
     width: 22rem;
   } */
+
+  .blogs .body {
+    font-size: smaller;
+  }
 }

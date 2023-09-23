@@ -28,7 +28,7 @@ if (isset($_GET["search"]) && !empty($_GET['search'])) {
     $category_id = $category["id"];
     $data = mysqli_query($link, "SELECT * FROM blogs WHERE category_id = $category_id");
     $total_data = mysqli_num_rows($data);
-    $limit = 12;
+    $limit = 30;
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $first_page = ($page > 1) ? ($page * $limit) - $limit : 0;
     $total_page = "";
@@ -44,7 +44,7 @@ if (isset($_GET["search"]) && !empty($_GET['search'])) {
 } else {
     $data = mysqli_query($link, "SELECT * FROM blogs");
     $total_data = mysqli_num_rows($data);
-    $limit = 12;
+    $limit = 3;
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $first_page = ($page > 1) ? ($page * $limit) - $limit : 0;
     $total_page = "";
