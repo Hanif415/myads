@@ -162,6 +162,8 @@ include('../../backend/getBanner.php');
                                                             echo "href='?category=$_GET[category]&page=$previous'";
                                                         } else if (isset($_GET["search"]) && !empty($_GET["search"])) {
                                                             echo "href='?search=$_GET[search]&page=$previous'";
+                                                        } else {
+                                                            echo "href='?page=$previous'";
                                                         }
                                                     } ?>>Previous</a>
                         </li>
@@ -199,6 +201,8 @@ include('../../backend/getBanner.php');
                                                             echo "href='?category=$_GET[category]&page=$next'";
                                                         } else if (isset($_GET["search"]) && !empty($_GET["search"])) {
                                                             echo "href='?search=$_GET[search]&page=$next'";
+                                                        } else {
+                                                            echo "href='?page=$next'";
                                                         }
                                                     } ?>>Next</a>
                         </li>
