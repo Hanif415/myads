@@ -148,7 +148,7 @@ include('../../backend/getBanner.php');
     <footer>
         <div class="container">
             <div class="row justify-content-center foot-item">
-                <div class="col-lg-2 col-6">
+                <div class="col-lg-2 col-5">
                     <p>MY ADS</p>
                     <ul>
                         <a href="#about" style="color: white;">
@@ -159,7 +159,7 @@ include('../../backend/getBanner.php');
                         </a>
                     </ul>
                 </div>
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-7">
                     <p>Service</p>
                     <ul>
                         <li>Digital Marketing Optimization</li>

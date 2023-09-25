@@ -720,10 +720,10 @@ header
 
 @media (max-width: 992px) {
 
-  .header-area .main-nav .nav li:last-child,
+  /* .header-area .main-nav .nav li:last-child,
   .background-header .main-nav .nav li:last-child {
     display: none;
-  }
+  } */
 
   .header-area .main-nav .nav li:nth-child(6),
   .background-header .main-nav .nav li:nth-child(6) {
@@ -2434,6 +2434,11 @@ responsive
     margin-top: 30px;
   }
 
+  /* .header-area .main-nav .logo img {
+    max-width: 65px;
+    margin-left: 0px;
+  } */
+
   /* .post-item .right-content span.date {
     text-align: left;
     float: left;
@@ -2454,4 +2459,13 @@ responsive
   /* .blog .blog-posts .post-item .date {
     visibility: hidden;
   } */
+
+  footer, footer p {
+    font-size: 0.8rem !important;
+  }
+
+  .main-banner:before {
+    content: '';
+    background-position: 800px;
+  }
 }

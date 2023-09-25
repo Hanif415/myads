@@ -18,6 +18,8 @@ include('backend/getBanner.php');
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+  <link rel="icon" href="assets/images/myads.png">
+
   <title>MY ADS</title>
 
   <!-- Bootstrap core CSS -->
@@ -716,7 +718,7 @@ include('backend/getBanner.php');
   <footer>
     <div class="container">
       <div class="row justify-content-center foot-item">
-        <div class="col-lg-2 col-6">
+        <div class="col-lg-2 col-4">
           <p>MY ADS</p>
           <ul>
             <a href="#about" style="color: white;">
@@ -727,7 +729,7 @@ include('backend/getBanner.php');
             </a>
           </ul>
         </div>
-        <div class="col-lg-3 col-6">
+        <div class="col-lg-3 col-8">
           <p>Service</p>
           <ul>
             <li>Digital Marketing Optimization</li>
@@ -776,7 +778,6 @@ include('backend/getBanner.php');
   <script src="assets/js/animation.js"></script>
   <script src="assets/js/imagesloaded.js"></script>
   <script src="assets/js/custom.js"></script>
-
 </body>
 
 </html>

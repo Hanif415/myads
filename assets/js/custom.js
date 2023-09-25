@@ -67,28 +67,29 @@
 
   $(document).ready(function () {
     $(document).on("scroll", onScroll);
-
+  
     //smoothscroll
     $('.scroll-to-section a[href^="#"]').on('click', function (e) {
       e.preventDefault();
       $(document).off("scroll");
-
+  
       $('.scroll-to-section a').each(function () {
         $(this).removeClass('active');
-      })
+      });
       $(this).addClass('active');
-
-      var target = this.hash,
-        menu = target;
-      var target = $(this.hash);
+  
+      var targetId = $(this.hash).attr('id'); // Get the ID of the target element
+      var target = '#' + targetId; // Construct the new target hash
+  
       $('html, body').stop().animate({
-        scrollTop: (target.offset().top) + 1
+        scrollTop: $(target).offset().top + 1
       }, 500, 'swing', function () {
-        window.location.hash = target;
+        window.location.hash = target; // Set the window location hash to the new target
         $(document).on("scroll", onScroll);
       });
     });
   });
+  
 
   function onScroll(event) {
     var scrollPos = $(document).scrollTop();
