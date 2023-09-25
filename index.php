@@ -154,11 +154,11 @@ include('backend/getBanner.php');
           <div class="row">
             <div class="col-lg-12 align-self-center  wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
               <div class="about-right-content">
-                <div class="section-heading">
-                  <h4>What we working on, anyway</h4>
+                <div class="section-heading mt-lg-0 mt-4">
+                  <h4 class="fs-3">What we working on, anyway</h4>
                   <div class="line-dec"></div>
                 </div>
-                <div class="row mt-5">
+                <div class="row mt-5 about-default">
                   <div class="col-12">
                     <div class="card">
                       <div class="row text-sm-start text-center">
@@ -222,7 +222,76 @@ include('backend/getBanner.php');
                     </div>
                   </div>
                 </div>
-
+                <div class="row mt-5 about-carousel">
+                  <div class="col-12">
+                    <div class="loop owl-carousel">
+                      <div class="item about-item">
+                        <div class="card">
+                          <div class="row text-center justify-content-center">
+                            <div class="col-8">
+                              <img class="card-img-top" src="assets/images/work2.jpg" alt="Card image cap">
+                            </div>
+                            <div class="col-12">
+                              <div class="card-body">
+                                <h5 class="card-title">Limitless Creativity</h5>
+                                <p class="card-text">Tim desainer kreatif kami memiliki keahlian
+                                  untuk menciptakan konten
+                                  visual
+                                  yang menarik dan efektif, mulai dari logo hingga kampanye
+                                  iklan digital, untuk memberikan
+                                  dampak maksimal bagi merek klien.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="item about-item">
+                        <div class="card">
+                          <div class="row text-center justify-content-center">
+                            <div class="col-8">
+                              <img class="card-img-top" src=" assets/images/work1.png" alt="Card image cap">
+                            </div>
+                            <div class="col-12">
+                              <div class="card-body">
+                                <h5 class="card-title">Customizable Digital Advertising
+                                  Strategies</h5>
+                                <p class="card-text">Kami menyadari bahwa setiap klien memiliki
+                                  tujuan unik. Oleh karena
+                                  itu, kami menghadirkan strategi digital advertising yang
+                                  dapat disesuaikan untuk mencapai
+                                  hasil yang optimal sesuai dengan kebutuhan dan anggaran
+                                  masing-masing klien.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="item about-item">
+                        <div class="col-12">
+                          <div class="card">
+                            <div class="row text-center justify-content-center">
+                              <div class="col-8">
+                                <img class="card-img-top" src="assets/images/work3.jpg" alt="Card image cap">
+                              </div>
+                              <div class="col-12">
+                                <div class="card-body">
+                                  <h5 class="card-title">In-depth Data Analysis</h5>
+                                  <p class="card-text">Di My Ads, kami mengintegrasikan analisis
+                                    data mendalam dalam
+                                    pendekatan
+                                    kami. Kami menggali data untuk mengoptimalkan kampanye klien
+                                    dan memastikan investasi
+                                    klien
+                                    kami memberikan hasil yang terukur.</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
